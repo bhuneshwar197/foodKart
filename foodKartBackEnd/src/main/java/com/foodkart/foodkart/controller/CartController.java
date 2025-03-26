@@ -23,36 +23,6 @@ public class CartController {
 
     private final CartService cartService;
 
-//    @PostMapping("/create-food")
-//    public ResponseEntity<Food> createFood(@RequestBody Food food) {
-//        Food savedFood = foodService.createFood(food);
-//        return new ResponseEntity<>(savedFood, HttpStatus.CREATED);
-//    }
-//
-//    @GetMapping("/get-all-food")
-//    public ResponseEntity<List<Food>> getAllFoods() {
-//        List<Food> foods = foodService.getAllFoods();
-//        return new ResponseEntity<>(foods, HttpStatus.OK);
-//    }
-//
-//    @GetMapping("/get-food-by-food-id/{foodId}")
-//    public ResponseEntity<Food> getFoodByFoodId(@PathVariable String foodId) {
-//        Food food = foodService.getFoodByFoodId(foodId);
-//        return new ResponseEntity<>(food, HttpStatus.OK);
-//    }
-//
-//    @PutMapping("/update-food")
-//    public ResponseEntity<Food> updateFoodByFoodId(@RequestBody Food foodDetails) {
-//        Food updatedFood = foodService.updateFoodByFoodId(foodDetails);
-//        return new ResponseEntity<>(updatedFood, HttpStatus.OK);
-//    }
-//
-//    @DeleteMapping("/delete-food-by-food-id/{foodId}")
-//    public ResponseEntity<String> deleteFoodByFoodId(@PathVariable String foodId) {
-//        foodService.deleteFoodByFoodId(foodId);
-//        return ResponseEntity.ok("Food item deleted successfully with foodId: " +foodId);
-//    }
-
     @GetMapping("/get-all-cart")
     public ResponseEntity<List<Cart>> getAllCart(){
         return new ResponseEntity<>(cartService.getAllCart(), HttpStatus.FOUND);

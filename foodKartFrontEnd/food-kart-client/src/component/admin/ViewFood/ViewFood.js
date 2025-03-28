@@ -44,6 +44,7 @@ const ViewFood = () => {
     return (
         <TableComponent
             tableData={tableData}
+            tableHeading='Food Data'
         />
     );
 };

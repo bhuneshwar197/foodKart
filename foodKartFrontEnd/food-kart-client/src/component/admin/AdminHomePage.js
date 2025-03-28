@@ -1,22 +1,8 @@
 import { useState } from "react";
-import TableComponent from "./common/TableComponent/TableComponent";
 import ViewAdmin from "./ViewAdmin/ViewAdmin";
 import ViewCustomer from "./ViewCustomer/ViewCustomer";
 import ViewFeedback from "./ViewFeedback/ViewFeedback";
-import viewAdmin from "./ViewAdmin/ViewAdmin";
 import ViewFood from "./ViewFood/ViewFood";
-
-// Mock API function to fetch data
-const fetchData = async (type) => {
-    const mockData = {
-        viewAdmin: [{ id: 1, name: "Admin 1", role: "Manager" }, { id: 2, name: "Admin 2", role: "Supervisor" }],
-        updateAdmin: [{ id: 1, name: "Admin 1 Updated", role: "Director" }, { id: 2, name: "Admin 2 Updated", role: "Lead" }],
-        viewFood: [{ id: 1, name: "Pizza", category: "Fast Food" }, { id: 2, name: "Pasta", category: "Italian" }],
-        updateFood: [{ id: 1, name: "Pizza Updated", category: "Fast Food" }, { id: 2, name: "Pasta Updated", category: "Italian" }],
-    };
-
-    return new Promise((resolve) => setTimeout(() => resolve(mockData[type] || []), 1000));
-};
 
 const componentsName = {
     viewCustomer: 'ViewCustomer',
@@ -27,12 +13,10 @@ const componentsName = {
 
 const AdminHomePage = () => {
     const [openSubMenu, setOpenSubMenu] = useState(null);
-    const [data, setData] = useState([]);
     const [loadingComponentName, setLoadingComponentName] = useState(null);
 
     const handleMenuClick = async (type) => {
-        const result = await fetchData(type);
-        setData(result);
+
     };
 
     const handleViewAdminClick = async () => {
@@ -148,7 +132,6 @@ const AdminHomePage = () => {
 
             </nav>
 
-            <h1 style={{ textAlign: "center", marginTop: "20px" }}>Data Table</h1>
             {(() => {
                 if (loadingComponentName === componentsName.viewAdmin) {
                     return <ViewAdmin />;

@@ -1,4 +1,6 @@
 import React from "react";
+import Spinner from 'react-bootstrap/Spinner';
+import FullScreenSpinner from "../FullScreenSpinner/FullScreenSpinner";
 
 const styles = {
     table: { width: "100%", borderCollapse: "collapse", marginTop: "20px" },
@@ -6,12 +8,15 @@ const styles = {
     td: { border: "1px solid #ddd", padding: "8px" }
 };
 
-const TableComponent = ({ tableData }) => {
+const TableComponent = ({ tableData, tableHeading }) => {
     if (!tableData || tableData.length === 0) {
-        return <p>No data available</p>;
+        return (<FullScreenSpinner />);
     }
 
     return (
+        <>
+        <h1 style={{ textAlign: "center", marginTop: "20px" }}>{tableHeading}</h1>
+
         <table style={styles.table}>
             <thead>
             <tr>
@@ -30,6 +35,7 @@ const TableComponent = ({ tableData }) => {
             ))}
             </tbody>
         </table>
+            </>
     );
 };
 

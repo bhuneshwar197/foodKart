@@ -44,6 +44,7 @@ const ViewCustomer = () => {
     return (
         <TableComponent
             tableData={tableData}
+            tableHeading='Customer Data'
         />
     );
 };

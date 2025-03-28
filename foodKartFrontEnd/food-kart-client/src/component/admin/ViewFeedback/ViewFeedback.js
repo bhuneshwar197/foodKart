@@ -44,6 +44,7 @@ const ViewFeedback = () => {
     return (
         <TableComponent
             tableData={tableData}
+            tableHeading='Feedback Data'
         />
     );
 };

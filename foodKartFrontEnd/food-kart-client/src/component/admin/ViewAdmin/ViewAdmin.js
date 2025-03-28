@@ -43,6 +43,7 @@ const ViewAdmin = () => {
     return (
         <TableComponent
             tableData={tableData}
+            tableHeading='Admin Data'
         />
     );
 };

@@ -1,6 +1,10 @@
 import { useState } from "react";
 import TableComponent from "./common/TableComponent/TableComponent";
 import ViewAdmin from "./ViewAdmin/ViewAdmin";
+import ViewCustomer from "./ViewCustomer/ViewCustomer";
+import ViewFeedback from "./ViewFeedback/ViewFeedback";
+import viewAdmin from "./ViewAdmin/ViewAdmin";
+import ViewFood from "./ViewFood/ViewFood";
 
 // Mock API function to fetch data
 const fetchData = async (type) => {
@@ -14,7 +18,12 @@ const fetchData = async (type) => {
     return new Promise((resolve) => setTimeout(() => resolve(mockData[type] || []), 1000));
 };
 
-
+const componentsName = {
+    viewCustomer: 'ViewCustomer',
+    viewAdmin: 'ViewAdmin',
+    viewFeedback: 'ViewFeedback',
+    viewFood: 'ViewFood',
+};
 
 const AdminHomePage = () => {
     const [openSubMenu, setOpenSubMenu] = useState(null);
@@ -27,7 +36,7 @@ const AdminHomePage = () => {
     };
 
     const handleViewAdminClick = async () => {
-        setLoadingComponentName('ViewAdmin');
+        setLoadingComponentName(componentsName.viewAdmin);
     };
 
     const styles = {
@@ -41,6 +50,29 @@ const AdminHomePage = () => {
         <div>
             {/* Navbar */}
             <nav style={styles.nav}>
+
+
+                <div
+                    style={styles.menuItem}
+                    onMouseEnter={() => setOpenSubMenu("Customer")}
+                    onMouseLeave={() => setOpenSubMenu(null)}
+                >
+                    <span>Customer ▼</span>
+                    {openSubMenu === "Customer" && (
+                        <ul style={styles.submenu}>
+                            <li>
+                                <span
+                                    style={styles.submenuItem}
+                                    onClick={() => setLoadingComponentName(componentsName.viewCustomer)}
+                                >
+                                    View Customer
+                                </span>
+                            </li>
+                        </ul>
+                    )}
+                </div>
+
+
                 <div
                     style={styles.menuItem}
                     onMouseEnter={() => setOpenSubMenu("admin")}
@@ -49,8 +81,20 @@ const AdminHomePage = () => {
                     <span>Admin ▼</span>
                     {openSubMenu === "admin" && (
                         <ul style={styles.submenu}>
-                            <li><span style={styles.submenuItem} onClick={() => handleViewAdminClick()}>View Admin</span></li>
-                            <li><span style={styles.submenuItem} onClick={() => handleMenuClick("updateAdmin")}>Update Admin</span></li>
+                            <li>
+                                <span style={styles.submenuItem}
+                                      onClick={() => handleViewAdminClick()}
+                                >
+                                View Admin</span>
+                            </li>
+                            <li>
+                                <span
+                                    style={styles.submenuItem}
+                                    onClick={() => handleMenuClick("updateAdmin")}
+                                >
+                                    Update Admin
+                                </span>
+                            </li>
                         </ul>
                     )}
                 </div>
@@ -63,17 +107,57 @@ const AdminHomePage = () => {
                     <span>Food ▼</span>
                     {openSubMenu === "food" && (
                         <ul style={styles.submenu}>
-                            <li><span style={styles.submenuItem} onClick={() => handleMenuClick("viewFood")}>View Food</span></li>
-                            <li><span style={styles.submenuItem} onClick={() => handleMenuClick("updateFood")}>Update Food</span></li>
+                            <li>
+                                <span
+                                    style={styles.submenuItem}
+                                    onClick={() => setLoadingComponentName(componentsName.viewFood)}
+                                >
+                                    View Food
+                                </span>
+                            </li>
+                            <li>
+                                <span style={styles.submenuItem}
+                                      onClick={() => handleMenuClick("updateFood")}
+                                >
+                                    Update Food
+                                </span>
+                            </li>
                         </ul>
                     )}
                 </div>
+
+                <div
+                    style={styles.menuItem}
+                    onMouseEnter={() => setOpenSubMenu("Feedback")}
+                    onMouseLeave={() => setOpenSubMenu(null)}
+                >
+                    <span>Feedback ▼</span>
+                    {openSubMenu === "Feedback" && (
+                        <ul style={styles.submenu}>
+                            <li>
+                                <span
+                                    style={styles.submenuItem}
+                                    onClick={() => setLoadingComponentName(componentsName.viewFeedback)}
+                                >
+                                    View Feedback
+                                </span>
+                            </li>
+                        </ul>
+                    )}
+                </div>
+
             </nav>
 
             <h1 style={{ textAlign: "center", marginTop: "20px" }}>Data Table</h1>
             {(() => {
-                if (loadingComponentName === 'ViewAdmin') {
+                if (loadingComponentName === componentsName.viewAdmin) {
                     return <ViewAdmin />;
+                } else if (loadingComponentName === componentsName.viewCustomer) {
+                    return <ViewCustomer/>;
+                } else if (loadingComponentName === componentsName.viewFeedback) {
+                    return <ViewFeedback />;
+                } else if (loadingComponentName === componentsName.viewFood) {
+                    return <ViewFood />;
                 } else {
                     return <p style={{ textAlign: "center", fontSize: "18px" }}>Click a submenu to load data.</p>;
                 }

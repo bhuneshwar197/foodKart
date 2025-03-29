@@ -34,6 +34,13 @@ public class FoodService {
 
 //    public Food createFood(FoodRequest foodRequest, MultipartFile file) {
     public Food createFood(FoodRequest foodRequest) {
+
+        Food existingFood = foodRepository.findByFoodId(foodRequest.getFoodId());
+
+        if (existingFood != null) {
+            throw new DetailsAlreadyExistsException("Sorry, food already found with foodId: " + foodRequest.getFoodId());
+        }
+
         Food food = new Food();
         //try {
             food.setFoodId(foodRequest.getFoodId());

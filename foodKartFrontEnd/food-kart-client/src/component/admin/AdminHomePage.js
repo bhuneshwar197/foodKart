@@ -2,6 +2,7 @@ import { useState } from "react";
 import ViewAdmin from "./ViewAdmin/ViewAdmin";
 import ViewCustomer from "./ViewCustomer/ViewCustomer";
 import ViewFeedback from "./ViewFeedback/ViewFeedback";
+import AddFood from "./AddFood/AddFood";
 import ViewFood from "./ViewFood/ViewFood";
 
 const componentsName = {
@@ -9,14 +10,15 @@ const componentsName = {
     viewAdmin: 'ViewAdmin',
     viewFeedback: 'ViewFeedback',
     viewFood: 'ViewFood',
+    addFood: 'AddFood',
 };
 
 const AdminHomePage = () => {
     const [openSubMenu, setOpenSubMenu] = useState(null);
     const [loadingComponentName, setLoadingComponentName] = useState(null);
 
-    const handleMenuClick = async (type) => {
-
+    const handleAddFoodClick = async () => {
+        setLoadingComponentName(componentsName.addFood);
     };
 
     const handleViewAdminClick = async () => {
@@ -74,7 +76,7 @@ const AdminHomePage = () => {
                             <li>
                                 <span
                                     style={styles.submenuItem}
-                                    onClick={() => handleMenuClick("updateAdmin")}
+                                    onClick={() => handleViewAdminClick()}
                                 >
                                     Update Admin
                                 </span>
@@ -101,9 +103,9 @@ const AdminHomePage = () => {
                             </li>
                             <li>
                                 <span style={styles.submenuItem}
-                                      onClick={() => handleMenuClick("updateFood")}
+                                      onClick={() => handleAddFoodClick()}
                                 >
-                                    Update Food
+                                    Add Food
                                 </span>
                             </li>
                         </ul>
@@ -141,6 +143,8 @@ const AdminHomePage = () => {
                     return <ViewFeedback />;
                 } else if (loadingComponentName === componentsName.viewFood) {
                     return <ViewFood />;
+                } else if (loadingComponentName === componentsName.addFood) {
+                    return <AddFood />;
                 } else {
                     return <p style={{ textAlign: "center", fontSize: "18px" }}>Click a submenu to load data.</p>;
                 }

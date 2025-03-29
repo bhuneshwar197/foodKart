@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import TableComponent from "../common/TableComponent/TableComponent";
-
+import FullScreenSpinner from "../common/FullScreenSpinner/FullScreenSpinner";
 
 const ViewFeedback = () => {
-
     const [tableData, setTableData] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const fetchViewFeedbackData = async () => {
         const maxRetries = 3;
@@ -12,40 +13,51 @@ const ViewFeedback = () => {
 
         while (attempt < maxRetries) {
             try {
+                setLoading(true);
                 const response = await fetch("http://localhost:9192/feedback/get-all-feedback");
                 await new Promise(resolve => setTimeout(resolve, 500));
                 const data = await response.json();
-                return data; // Return data if successful
 
-            }
-            catch (error) {
-                console.error(`Error fetching admin data (Attempt ${attempt + 1}):`, error);
+                if (data.length === 0) {
+                    setError("No feedback available.");
+                }
+
+                return data;
+            } catch (error) {
+                console.error(`Error fetching feedback data (Attempt ${attempt + 1}):`, error);
                 attempt++;
+
                 if (attempt < maxRetries) {
                     console.log(`Retrying in 1 minute... (${maxRetries - attempt} retries left)`);
                 } else {
                     console.error("Max retries reached. Returning empty data.");
-                    return []; // Return empty array after max retries
+                    setError("Failed to load feedback data.");
+                    return [];
                 }
+            } finally {
+                setLoading(false);
             }
         }
     };
 
-    const setViewFeedbackData = async () => {
-        const result = await fetchViewFeedbackData();
-        setTableData(result);
-    };
-
     useEffect(() => {
         setTableData([]);
-        setViewFeedbackData();
+        setError(null);
+        fetchViewFeedbackData().then(setTableData);
     }, []);
 
     return (
-        <TableComponent
-            tableData={tableData}
-            tableHeading='Feedback Data'
-        />
+        <div>
+            {loading && <FullScreenSpinner />}
+            {error && <p className="text-red-500">{error}</p>}
+            {!loading && !error && tableData.length === 0 && <h1>No feedback available.</h1>}
+            {tableData.length > 0 && (
+                <TableComponent
+                    tableData={tableData}
+                    tableHeading="Feedback Data"
+                />
+            )}
+        </div>
     );
 };
 

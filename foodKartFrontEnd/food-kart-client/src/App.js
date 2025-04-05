@@ -21,42 +21,11 @@ function App() {
 			<Router>
 				{/*<NavBar />*/}
 				<Routes>
-					<Route
-						exact
-						path="/"
-						element={<Home />}
-					></Route>
-					<Route
-						exact
-						path="/view-students"
-						element={<StudentsView />}></Route>
-						{/*element={<AdminHomePage />}></Route>*/}
-					<Route
-						exact
-						path="/add-students"
-						element={<AddStudent />}></Route>
-					<Route
-						exact
-						path="/edit-student/:id"
-						element={<EditStudent />}></Route>
-
-					{/*<Route*/}
-					{/*	exact*/}
-					{/*	path="/foodkart"*/}
-					{/*	element={<CustomerHomePage />}>*/}
-					{/*</Route>*/}
-
-					{/*<Route*/}
-					{/*	exact*/}
-					{/*	path="/foodkart"*/}
-					{/*	element={<CustomerHomePage />}*/}
-					{/*/>*/}
 
 					<Route
 						exact
 						path="/foodkart"
 						element={<CustomerHomePage />}
-						// element={<AdminHomePage />}
 					/>
 
 					<Route

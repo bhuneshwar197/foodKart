@@ -1,0 +1,90 @@
+.navbar-container {
+    background: linear-gradient(to bottom, #000, #333);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.logo {
+    font-size: 36px;
+    font-weight: bold;
+    color: red;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+}
+
+.dropdown-menu > li {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.submenu {
+    list-style: none;
+    position: absolute;
+    top: 0;
+    left: 150px;
+    background: white;
+    padding: 10px;
+    display: none;
+}
+
+.dropdown-menu > li:hover .submenu {
+    display: block;
+}
+
+.auth-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.green {
+    background-color: lightgreen;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.red {
+    background-color: tomato;
+}
+
+.user-email {
+    background-color: skyblue;
+    padding: 5px 10px;
+    border-radius: 5px;
+}

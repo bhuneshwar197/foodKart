@@ -1,11 +1,7 @@
 package com.foodkart.foodkart.service;
 
-import com.foodkart.foodkart.exception.DetailsAlreadyExistsException;
 import com.foodkart.foodkart.exception.DetailsNotFoundException;
-import com.foodkart.foodkart.model.Admin;
-import com.foodkart.foodkart.model.Customer;
 import com.foodkart.foodkart.model.Feedback;
-import com.foodkart.foodkart.repository.AdminRepository;
 import com.foodkart.foodkart.repository.FeedbackRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

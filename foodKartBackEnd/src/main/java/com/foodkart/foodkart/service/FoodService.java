@@ -2,21 +2,14 @@ package com.foodkart.foodkart.service;
 
 import com.foodkart.foodkart.exception.DetailsAlreadyExistsException;
 import com.foodkart.foodkart.exception.DetailsNotFoundException;
-import com.foodkart.foodkart.model.Admin;
 import com.foodkart.foodkart.model.Food;
-import com.foodkart.foodkart.repository.AdminRepository;
 import com.foodkart.foodkart.repository.FoodRepository;
 import com.foodkart.foodkart.requests.FoodRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Simpson Alfred

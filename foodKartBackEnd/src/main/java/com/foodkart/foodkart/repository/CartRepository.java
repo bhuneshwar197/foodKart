@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CartRepository extends JpaRepository<Cart, Long> {
     List<Cart> findByEmail(String email);
-    List<Cart> findByEmailAndFoodId(String email, String foodId);
+    Cart findByEmailAndFoodId(String email, String foodId);
     @Transactional
     void deleteByEmailAndFoodId(String email, String foodId);
 }

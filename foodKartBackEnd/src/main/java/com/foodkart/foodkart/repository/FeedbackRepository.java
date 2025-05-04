@@ -1,6 +1,5 @@
 package com.foodkart.foodkart.repository;
 
-import com.foodkart.foodkart.model.Customer;
 import com.foodkart.foodkart.model.Feedback;
 import org.springframework.data.jpa.repository.JpaRepository;
 

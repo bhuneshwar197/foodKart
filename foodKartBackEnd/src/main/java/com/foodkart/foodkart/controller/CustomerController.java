@@ -2,11 +2,9 @@ package com.foodkart.foodkart.controller;
 
 import com.foodkart.foodkart.model.Customer;
 import com.foodkart.foodkart.service.CustomerService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,6 +38,11 @@ public class CustomerController {
     @PutMapping("/update-password")
     public Customer updatePassword(@RequestParam (required = false) String email, @RequestParam(required = false) String password) {
         return customerService.updatePassword(email, password);
+    }
+
+    @GetMapping("/get-customer-emailAndpassword")
+    public Customer getCustomerByEmailAndPassword(@RequestParam (required = false) String email, @RequestParam(required = false) String password) {
+        return customerService.getCustomerByEmailAndPassword(email, password);
     }
 
 }

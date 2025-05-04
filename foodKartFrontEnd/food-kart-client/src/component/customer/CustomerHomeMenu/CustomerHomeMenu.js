@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import {CustomerContext} from "../CustomerLoginContextAndProvider/CustomerLoginContextAndProvider";
 
 const textSlides = [
     "slide1", "slide2", "slide3", "slide4", "slide5",
@@ -20,6 +21,11 @@ const TextCarousel = () => {
         pauseOnHover: false,
         arrows: false,
     };
+
+    const {customerEmail, setCustomerEmail} =  useContext(CustomerContext);
+
+    console.log("customerEmail in Home = 44444 ", customerEmail)
+
 
     return (
         <div style={{ width: '400px', margin: '0 auto', textAlign: 'center' }}>

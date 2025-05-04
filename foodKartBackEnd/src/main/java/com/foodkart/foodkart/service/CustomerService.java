@@ -46,6 +46,21 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
+    public Customer getCustomerByEmailAndPassword(String email, String password) {
+
+        Customer customer = customerRepository.findByEmailAndPassword(email,password);
+        return customer;
+    }
+
+//    public Customer getByEmailAndPassword(String email, String password) {
+//        if (!isCustomerEmailAlreadyExists(email)){
+//            throw new DetailsNotFoundException("Sorry, customer not found with email: " + email);
+//        }
+//        Customer customer = customerRepository.findByEmailAndPassword(email);
+//        customer.setPassword(password);
+//        return customerRepository.save(customer);
+//    }
+
     private boolean isCustomerEmailAlreadyExists(String email) {
         Customer customer = customerRepository.findByEmail(email);
         return customer != null;

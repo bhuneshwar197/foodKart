@@ -1,9 +1,7 @@
 package com.foodkart.foodkart.controller;
 
 import com.foodkart.foodkart.model.Admin;
-import com.foodkart.foodkart.model.Customer;
 import com.foodkart.foodkart.service.AdminService;
-import com.foodkart.foodkart.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

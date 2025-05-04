@@ -3,7 +3,7 @@ import ViewAdmin from "./ViewAdmin/ViewAdmin";
 import ViewCustomer from "./ViewCustomer/ViewCustomer";
 import ViewFeedback from "./ViewFeedback/ViewFeedback";
 import AddFood from "./AddFood/AddFood";
-import ViewFood from "./ViewFood/ViewFood";
+import ViewCustomerFood from "../customer/ViewCustomerFood/ViewCustomerFood";
 import DeleteFoodByFoodId from "./DeleteFoodByFoodId/DeleteFoodByFoodId";
 import ViewFoodByFoodId from "./ViewFoodByFoodId/ViewFoodByFoodId";
 
@@ -115,7 +115,11 @@ const AdminHomePage = () => {
 
                             <li>
                                 <span style={styles.submenuItem}
-                                      onClick={() => handleAddFoodClick()}
+                                      // onClick={() => handleAddFoodClick()}
+                                      // onClick={() => setLoadingComponentName(componentsName.viewFood)}
+                                      onClick={() => setLoadingComponentName("AddFood")}
+
+                                      // setLoadingComponentName(componentsName.addFood);
                                 >
                                     Add Food
                                 </span>
@@ -174,7 +178,7 @@ const AdminHomePage = () => {
                 } else if (loadingComponentName === componentsName.viewFeedback) {
                     return <ViewFeedback />;
                 } else if (loadingComponentName === componentsName.viewFood) {
-                    return <ViewFood />;
+                    return <ViewCustomerFood />;
                 } else if (loadingComponentName === componentsName.addFood) {
                     return <AddFood />;
                 } else if (loadingComponentName === componentsName.viewFoodByFoodId) {

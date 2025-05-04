@@ -1,10 +1,8 @@
 package com.foodkart.foodkart.controller;
 
 import com.foodkart.foodkart.model.Cart;
-import com.foodkart.foodkart.model.Customer;
-import com.foodkart.foodkart.model.Food;
+import com.foodkart.foodkart.response.requests.SavedCartResponse;
 import com.foodkart.foodkart.service.CartService;
-import com.foodkart.foodkart.service.FoodService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,13 +28,13 @@ public class CartController {
 
     // Create a new cart item
     @PostMapping("/create-cart")
-    public ResponseEntity<Cart> createCart(@RequestBody Cart cart) {
+    public ResponseEntity<SavedCartResponse> createCart(@RequestBody Cart cart) {
         return ResponseEntity.ok(cartService.createCart(cart));
     }
 
     // Get cart items by email
     @GetMapping("/get-cart-by-email/{email}")
-    public ResponseEntity<List<Cart>> viewCartByEmail(@PathVariable String email) {
+    public ResponseEntity<List<SavedCartResponse>> viewCartByEmail(@PathVariable String email) {
         return ResponseEntity.ok(cartService.viewCartByEmail(email));
     }
 

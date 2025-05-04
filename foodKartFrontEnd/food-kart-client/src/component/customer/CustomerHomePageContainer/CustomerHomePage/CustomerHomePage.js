@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, {useContext} from "react";
 import './CustomerHomePage.css'; // optional for custom styles
 
 
@@ -14,16 +14,21 @@ import './CustomerHomePage.css'; // optional for custom styles
 //
 // export default CustomerHomePage;
 
-
 import { useState } from "react";
-import Home from "../Home/Home";
-import ContactUs from "../ContactUs/ContactUs";
-import AboutUs from "../AboutUs/AboutUs";
+import CustomerHomeMenu from "../../CustomerHomeMenu/CustomerHomeMenu";
+import ContactUs from "../../ContactUs/ContactUs";
+import AboutUs from "../../AboutUs/AboutUs";
+import MyCart from "../../MyCart/MyCart";
+import ViewCustomerFeedback from "../../ViewCustomerFeedback/ViewCustomerFeedback";
+import SendFeedback from "../../SendFeedback/SendFeedback";
 // import ViewAdmin from "./ViewAdmin/ViewAdmin";
 // import ViewCustomer from "./ViewCustomer/ViewCustomer";
 // import ViewFeedback from "./ViewFeedback/ViewFeedback";
 // import AddFood from "./AddFood/AddFood";
-// import ViewFood from "./ViewFood/ViewFood";
+// import ViewCustomerFood from "./ViewCustomerFood/ViewCustomerFood";
+import ViewCustomerFood from "../../ViewCustomerFood/ViewCustomerFood";
+import CustomerLogin from "../../CustomerLogin/CustomerLogin";
+import {CustomerContext, CustomerProvider} from "../../CustomerLoginContextAndProvider/CustomerLoginContextAndProvider";
 // import DeleteFoodByFoodId from "./DeleteFoodByFoodId/DeleteFoodByFoodId";
 // import ViewFoodByFoodId from "./ViewFoodByFoodId/ViewFoodByFoodId";
 
@@ -31,9 +36,16 @@ const componentsName = {
     home: 'home',
     contactUs: 'contactUs',
     aboutUs: 'aboutUs',
+    customerLogin: 'customerLogin',
 };
 
+
 const CustomerHomePage = () => {
+    // const [customerEmail, setCustomerEmail] =  useContext(CustomerContext);
+
+    const {customerEmail, setCustomerEmail} =  useContext(CustomerContext);
+
+
     const [openSubMenu, setOpenSubMenu] = useState(null);
     const [loadingComponentName, setLoadingComponentName] = useState(null);
 
@@ -59,11 +71,16 @@ const CustomerHomePage = () => {
         },
     };
 
+    console.log("customerEmail in customerHomepage ======" +customerEmail);
     return (
+
         <div>
             {/* Navbar */}
             <nav style={styles.nav}>
-                <div className="logo">foodKART</div>
+                <div className="logo-contaoner">
+                    <div className="logo">foodKART</div>
+                    {/*<div className="logo"> Welcome {customerEmail}</div>*/}
+                </div>
 
                 <div
                     style={styles.menuItem}
@@ -87,7 +104,7 @@ const CustomerHomePage = () => {
                             <li>
                                 <span
                                     style={styles.submenuItem}
-                                    onClick={() => setLoadingComponentName(componentsName.viewFood)}
+                                    onClick={() => setLoadingComponentName("ViewCustomerFood")}
                                 >
                                     View Food
                                 </span>
@@ -152,10 +169,22 @@ const CustomerHomePage = () => {
                     <span>Your Account ▼</span>
                     {openSubMenu === "YourAccount" && (
                         <ul style={styles.submenu}>
+
+                            {!customerEmail  && (
+                                <li>
+                                <span
+                                    style={styles.submenuItem}
+                                    onClick={() => setLoadingComponentName(componentsName.customerLogin)}
+                                >
+                                    Login
+                                </span>
+                                </li>
+                            )}
+
                             <li>
                                 <span
                                     style={styles.submenuItem}
-                                    onClick={() => setLoadingComponentName(componentsName.viewFeedback)}
+                                    onClick={() => setLoadingComponentName("myCart")}
                                 >
                                     My Cart
                                 </span>
@@ -173,7 +202,7 @@ const CustomerHomePage = () => {
                             <li>
                                 <span
                                     style={styles.submenuItem}
-                                    onClick={() => setLoadingComponentName(componentsName.viewFeedback)}
+                                    onClick={() => setLoadingComponentName("viewCustomerFeedback")}
                                 >
                                     View Feedback
                                 </span>
@@ -182,26 +211,58 @@ const CustomerHomePage = () => {
                             <li>
                                 <span
                                     style={styles.submenuItem}
-                                    onClick={() => setLoadingComponentName(componentsName.viewFeedback)}
+                                    onClick={() => setLoadingComponentName("sendFeedback")}
                                 >
                                     Send Feedback
                                 </span>
                             </li>
 
+
+                            {customerEmail  && (
+                                <li>
+                                    <span
+                                        style={styles.submenuItem}
+                                        onClick={() => setCustomerEmail("")}
+                                    >
+                                        Logout
+                                    </span>
+                                </li>
+                            )}
+
                         </ul>
                     )}
                 </div>
+
+                {customerEmail && <div>Welcome {customerEmail}</div>}
+
 
             </nav>
 
             {(() => {
                 if (loadingComponentName === componentsName.home) {
-                    return <Home />;
+                    return <CustomerHomeMenu />;
                 } else if (loadingComponentName === componentsName.contactUs) {
                     return <ContactUs />
                 } else if (loadingComponentName === componentsName.aboutUs) {
                     return <AboutUs />
+                } else if (loadingComponentName === componentsName.customerLogin) {
+                    return <CustomerLogin
+                        loadingComponentName = {loadingComponentName}
+                        setLoadingComponentName = {setLoadingComponentName}
+                    />
+                } else if (loadingComponentName === "myCart") {
+                    return <MyCart />
                 }
+                else if (loadingComponentName === "viewCustomerFeedback") {
+                    return <ViewCustomerFeedback/>
+                }
+                else if (loadingComponentName === "sendFeedback") {
+                    return <SendFeedback/>
+                }
+                else if (loadingComponentName === "ViewCustomerFood") {
+                    return <ViewCustomerFood/>
+                }
+
 
             })()}
 

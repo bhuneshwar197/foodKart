@@ -16,12 +16,12 @@ import java.math.BigDecimal;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "order_history")
-public class OrderHistory {
+@Table(name = "prepare_order")
+public class PrepareOrder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_history_id")
-    private Long orderHistoryId;  // Auto-incremented primary key
+    private Long prepareOrderId;  // Auto-incremented primary key
 
     @Column(name = "order_id", length = 100, nullable = false)
     private String orderId;

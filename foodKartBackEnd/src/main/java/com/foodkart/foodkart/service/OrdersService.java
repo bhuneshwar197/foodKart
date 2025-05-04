@@ -34,8 +34,8 @@ public class OrdersService {
         return ordersRepository.findByDeliveryDate(deliveryDate);
     }
 
-    public List<Orders> getByStatus(String status) {
-        return ordersRepository.findByStatus(status);
+    public List<Orders> getByOrderStatus(String status) {
+        return ordersRepository.findByOrderStatus(status);
     }
 
     public List<Orders> getByDeliveredBy(String deliveredBy) {

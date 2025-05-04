@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
+@CrossOrigin("http://localhost:3000")
 public class OrdersController {
 
     @Autowired
@@ -45,8 +46,8 @@ public class OrdersController {
     }
 
     @GetMapping("/get-by-status/{status}")
-    public ResponseEntity<List<Orders>> getByStatus(@PathVariable String status) {
-        return ResponseEntity.ok(ordersService.getByStatus(status));
+    public ResponseEntity<List<Orders>> getByOrderStatus(@PathVariable String status) {
+        return ResponseEntity.ok(ordersService.getByOrderStatus(status));
     }
 
     @GetMapping("/get-by-deliveredBy/{deliveredBy}")

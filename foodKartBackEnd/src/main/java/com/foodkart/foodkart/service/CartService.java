@@ -116,4 +116,13 @@ public class CartService {
             throw new DetailsNotFoundException("Sorry, food not found in cart with foodId: " + foodId + " and emailId: " +email);
         }
     }
+
+    public void deleteAllByEmail(String email) {
+        List<Cart> cartItems = cartRepository.findByEmail(email);
+        if (cartItems != null) {
+            cartRepository.deleteAllByEmail(email);
+        } else {
+            throw new DetailsNotFoundException("Sorry, food not found in cart with emailId: " +email);
+        }
+    }
 }

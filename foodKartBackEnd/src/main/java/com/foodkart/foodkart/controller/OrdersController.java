@@ -1,6 +1,7 @@
 package com.foodkart.foodkart.controller;
 
 import com.foodkart.foodkart.model.Orders;
+import com.foodkart.foodkart.response.requests.CustomerOrderResponse;
 import com.foodkart.foodkart.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -28,9 +29,9 @@ public class OrdersController {
         return ResponseEntity.ok(ordersService.getByOrderId(orderId));
     }
 
-    @GetMapping("/get-by-email/{email}")
-    public ResponseEntity<List<Orders>> getByEmail(@PathVariable String email) {
-        return ResponseEntity.ok(ordersService.getByEmail(email));
+    @GetMapping("/get-customer-order-by-email/{email}")
+    public ResponseEntity<List<CustomerOrderResponse>> getCustomerOrderByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(ordersService.getCustomerOrderByEmail(email));
     }
 
     @GetMapping("/get-by-orderedDate/{orderedDate}")

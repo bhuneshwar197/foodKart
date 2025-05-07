@@ -1,9 +1,6 @@
 package com.foodkart.foodkart.requests;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -11,11 +8,12 @@ import java.math.BigDecimal;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Builder
 public class FoodDetail {
     private String foodId;
     private int quantity;
     private BigDecimal soldPrice;
+    private byte[] foodImage = null;
 }
 
 

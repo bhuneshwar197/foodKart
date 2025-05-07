@@ -46,7 +46,7 @@ public class PrepareOrderService {
                 .totalPrice(totalPrice[0])
                 .orderedDate(LocalDate.now())
                 .deliveredBy(null)
-                .orderStatus("NOT_DELIVERED")
+                .orderStatus("Not Delivered")
                 .customerName(preparedOrderRequest.getCustomerName())
                 .mobile(preparedOrderRequest.getMobile())
                 .pincode(preparedOrderRequest.getPincode())

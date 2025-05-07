@@ -222,7 +222,6 @@ const MyCart = () => {
                             </>
                         )}
                     </div>
-
                     {/* FORM SECTION */}
                     {!isPreviewing && (
                         <div className="md:w-1/3 p-4 border rounded-md shadow h-fit sticky top-4 self-start space-y-4">
@@ -294,3 +293,6 @@ const MyCart = () => {
 };
 
 export default MyCart;
+
+
+

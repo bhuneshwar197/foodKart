@@ -18,10 +18,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 @RequiredArgsConstructor
 public class CartService {
+    Logger logger = Logger.getLogger(CartService.class.getName());
 
     private final CartRepository cartRepository;
     private final FoodRepository foodRepository;
@@ -32,32 +34,38 @@ public class CartService {
 
 
     public SavedCartResponse createCart(Cart cart) {
-        Cart existingCartItemByEmailAndFoodId = cartRepository.findByEmailAndFoodId(cart.getEmail(), cart.getFoodId());
-        Cart savedCard;
-        if(existingCartItemByEmailAndFoodId != null) {
-            existingCartItemByEmailAndFoodId.setQuantity(existingCartItemByEmailAndFoodId.getQuantity() + cart.getQuantity());
-            existingCartItemByEmailAndFoodId.setInsertedDate(LocalDate.now());
-            savedCard = cartRepository.save(existingCartItemByEmailAndFoodId);
+        String customerEmail = cart.getEmail();
+        if(customerEmail != null && !customerEmail.isEmpty()) {
+            Cart existingCartItemByEmailAndFoodId = cartRepository.findByEmailAndFoodId(customerEmail, cart.getFoodId());
+            Cart savedCard;
+            if (existingCartItemByEmailAndFoodId != null) {
+                existingCartItemByEmailAndFoodId.setQuantity(existingCartItemByEmailAndFoodId.getQuantity() + cart.getQuantity());
+                existingCartItemByEmailAndFoodId.setInsertedDate(LocalDate.now());
+                savedCard = cartRepository.save(existingCartItemByEmailAndFoodId);
+            } else {
+                cart.setInsertedDate(LocalDate.now());
+                savedCard = cartRepository.save(cart);
+            }
+            Food food = foodRepository.findByFoodId(cart.getFoodId());
+            byte[] image = null;
+            if (food.getImage() != null) {
+                image = food.getImage();
+            }
+            SavedCartResponse savedCartResponse = SavedCartResponse
+                    .builder()
+                    .cartId(savedCard.getCartId())
+                    .foodId(savedCard.getFoodId())
+                    .quantity(savedCard.getQuantity())
+                    .sellingPrice(food.getSellingPrice())
+                    .foodImage(image)
+                    .foodName(food.getFoodName())
+                    .foodDescription(food.getDescription())
+                    .build();
+            return savedCartResponse;
         } else {
-            cart.setInsertedDate(LocalDate.now());
-            savedCard = cartRepository.save(cart);
+            logger.info("No cart created as email id is null or empty");
+            return null;
         }
-        Food food = foodRepository.findByFoodId(cart.getFoodId());
-        byte[] image = null;
-        if(food.getImage() != null) {
-            image = food.getImage();
-        }
-        SavedCartResponse savedCartResponse = SavedCartResponse
-                .builder()
-                .cartId(savedCard.getCartId())
-                .foodId(savedCard.getFoodId())
-                .quantity(savedCard.getQuantity())
-                .sellingPrice(food.getSellingPrice())
-                .foodImage(image)
-                .foodName(food.getFoodName())
-                .foodDescription(food.getDescription())
-                .build();
-        return savedCartResponse;
     }
 
     // Get cart items by email

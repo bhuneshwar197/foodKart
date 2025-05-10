@@ -62,16 +62,4 @@ public class PrepareOrderService {
     public List<PrepareOrder> getAllPrepareOrder() {
         return prepareOrderRepository.findAll();
     }
-//
-//    public List<PrepareOrder> findByOrderId(String orderId) {
-//        return PrepareOrderRepository.findByOrderId(orderId);
-//    }
-//
-//    public List<PrepareOrder> getByEmail(String email) {
-//        return PrepareOrderRepository.findByEmail(email);
-//    }
-//
-//    public Optional<PrepareOrder> getByOrderIdAndEmail(String orderId, String email) {
-//        return PrepareOrderRepository.findByOrderIdAndEmail(orderId, email);
-//    }
 }

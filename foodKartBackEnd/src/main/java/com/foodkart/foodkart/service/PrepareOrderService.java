@@ -25,7 +25,7 @@ public class PrepareOrderService {
     public String createOrder( PreparedOrderRequest preparedOrderRequest) {
         String orderId = UUID.randomUUID().toString();
         final BigDecimal[] totalPrice = {BigDecimal.valueOf(0.0)};
-        preparedOrderRequest.getFoodDetails ().forEach(preparedOrderItem -> {
+        preparedOrderRequest.getFoodDetails().forEach(preparedOrderItem -> {
             PrepareOrder preparedOrder = new PrepareOrder();
             preparedOrder.setOrderId(orderId);
             preparedOrder.setEmail(preparedOrderRequest.getEmail());
@@ -62,16 +62,4 @@ public class PrepareOrderService {
     public List<PrepareOrder> getAllPrepareOrder() {
         return prepareOrderRepository.findAll();
     }
-//
-//    public List<PrepareOrder> findByOrderId(String orderId) {
-//        return PrepareOrderRepository.findByOrderId(orderId);
-//    }
-//
-//    public List<PrepareOrder> getByEmail(String email) {
-//        return PrepareOrderRepository.findByEmail(email);
-//    }
-//
-//    public Optional<PrepareOrder> getByOrderIdAndEmail(String orderId, String email) {
-//        return PrepareOrderRepository.findByOrderIdAndEmail(orderId, email);
-//    }
 }

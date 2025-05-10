@@ -1,0 +1,238 @@
+
+
+
+create user userName identified by password;
+grant connect to userName;
+grant all privileges to userName;
+
+
+create user food1 identified by food1;
+grant connect to food1;
+grant all privileges to food1;
+
+gitHub: https://github.com/bhuneshwar197/foodKart 
+git clone https://github.com/bhuneshwar197/foodKart.git
+
+create branch in remote: feature/bhunesh
+
+git checkout feature/bhunesh
+
+CREATE DATABASE foodKart_database;
+use foodKart_database;
+SELECT DATABASE();
+
+
+backEnd: create folder --> openInIntellij --> file --> new --> project --> select Spring initiallizer  --> 
+type foodKart in name --> update location to  your folder --> type 
+
+jdbc:mysql://localhost:3306/foodKart_database
+
+
+if mySql not installed, pls follow https://www.w3schools.com/mysql/mysql_install_windows.asp
+
+server:
+  port: 9192
+
+spring:
+  datasource:
+    username: root
+    password: system
+    url: jdbc:mysql://localhost:3306/foodKart_database
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      format_sql: true
+
+
+netstat -ano | findstr :9192
+taskkill /PID 58540 /F
+
+
+execute maven goal
+to run manually in run mode (if getting classpath error) : mvn spring-boot:run
+to run manually in debug mode (if getting classpath error) : mvn spring-boot:run -Dspring-boot.run.debug
+
+foodkart
+foodkart95@gmail.com
+
+String userName="foodkart95@gmail.com";
+String password="p9764944776K@"; or vtar xele arnm cuii
+foodkartApp
+
+
+CREATE TABLE customer (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(50) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    mobile VARCHAR(15) NOT NULL,
+    password VARCHAR(255) NOT NULL, 
+    address VARCHAR(255),
+    pincode INT NOT NULL
+);
+
+create table admin
+(
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(255) NOT NULL,
+	email VARCHAR(50) NOT NULL UNIQUE,
+    mobile VARCHAR(15) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+create table feedback
+(
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	email VARCHAR(50) NOT NULL,
+	timestamp varchar(50),
+	subject varchar(500),
+	message varchar(3000)
+);
+
+
+
+
+CREATE TABLE food (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    food_id VARCHAR(50),
+    food_name VARCHAR(100),
+    selling_price DECIMAL(10, 2),
+    description VARCHAR(300),
+    image LONGBLOB,
+    qty INT,
+    category VARCHAR(30),
+    type VARCHAR(30),
+    cart_limit INT,
+    rating1 INT,
+    rating2 INT,
+    rating3 INT,
+    rating4 INT,
+    rating5 INT
+);
+
+category: veg/nonveg
+type: 
+
+
+ALTER TABLE food MODIFY COLUMN image LONGBLOB;
+
+
+CREATE TABLE cart (
+	cart_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(30),
+    food_id VARCHAR(50),
+    quantity INT,
+    inserted_date DATE
+);
+
+ALTER TABLE cart
+DROP COLUMN selling_price;
+
+CREATE TABLE prepare_order (
+	order_history_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    order_id VARCHAR(100),
+    email VARCHAR(30),
+    food_id VARCHAR(50),
+    quantity INT,
+    sold_price DECIMAL(10,2)
+);
+
+
+CREATE TABLE orders (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    order_id VARCHAR(100),
+    email VARCHAR(300),
+    total_price DECIMAL(10,2),
+    ordered_date DATE,
+    delivery_date DATE,
+    order_status VARCHAR(200),
+	customer_name VARCHAR(100) NOT NULL,
+	mobile BIGINT NOT NULL,
+	pincode VARCHAR(300),
+	delivery_address VARCHAR(300),
+    delivered_by VARCHAR(300)
+);
+
+CREATE TABLE employee (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    ename VARCHAR(50) NOT NULL,
+    empid VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(300) NOT NULL UNIQUE,
+    address VARCHAR(200),
+    mobile BIGINT NOT NULL
+);
+
+
+
+
+
+
+create controller, service, repository for methods addEmployee, getByName, getByEmail, getByMobile, delete employee, update emplyee
+
+
+git clone https://github.com/bhuneshwar197/foodKart.git
+
+location: MSI@DESKTOP-EHM1FT7 MINGW64 /d/dDrive/study/myProjects/myFoodKartProject/foodKartGit/foodKart (main)
+
+
+
+
+
+npx create-react-app foodKartClient
+
+
+
+create react component which has text box which will take foodId and on blue submit button, it delete food information from http://localhost:9192/food/delete-food-by-food-id/{foodId} and shows success message on food deletion and error message if svc fails
+
+
+
+********************************************************** sakshi ********************
+
+
+get-admin-by-email
+
+
+
+string dept = "MCA"  xxxx
+
+
+final string mcaDept = "MCA"
+string dept = mcaDept
+
+
+http://localhost:9192/cart/update-cart-by-email-and-food-id?email=bhunesh@&foodId=F123456&quantity=300
+ queryParam / requestParam: starts after question mark. if multiple query param then separated bt &
+ 
+ email -- query param and it svalue is bhunesh@
+ foodId -- query param and it svalue is F123456
+ quantity -- query param and it svalue is 300
+
+
+http://localhost:9192/admin1/delete-admin/{emaailId}
+http://localhost:9192/admin1/delete-admin/sakshi123
+
+
+
+
+context in react
+
+
+<tr>
+    <td className="font-medium align-top pt-2">Full Name</td>
+    <td>
+        <input
+            id="customer_name"
+            name="customer_name"
+            value={addressForm.customer_name}
+            onChange={handleFormChange}
+            placeholder="Full Name"
+            className={`w-full border rounded px-3 py-2 ${
+                errors.customer_name ? "border-red-500" : "border-gray-300"
+            }`}
+        />
+        {errors.customer_name && (
+            <p style={{ color: "red" }} className="text-sm mt-1">{errors.customer_name}</p>
+        )}
+    </td>
+</tr>

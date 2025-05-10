@@ -64,7 +64,7 @@ const MyCart = () => {
         }
     };
 
-    const totalOrderPrice = tableData.reduce(
+    const totalOrderPrice = tableData?.reduce(
         (acc, item) => acc + item.sellingPrice * item.quantity,
         0
     );
@@ -121,7 +121,7 @@ const MyCart = () => {
         try {
             const payload = {
                 email: customerEmail,
-                foodDetails: tableData.map(item => ({
+                foodDetails: tableData?.map(item => ({
                     foodId: item.foodId,
                     quantity: item.quantity,
                     soldPrice: item.sellingPrice
@@ -157,7 +157,7 @@ const MyCart = () => {
                         </p>
                     )}
                 </div>
-            ) : tableData.length === 0 ? (
+            ) : tableData?.length === 0 ? (
                 <div className="w-full text-center py-10">
                     <h2 className="text-xl font-semibold text-red-600">
                         Sorry! No item in your cart. Please add any items.
@@ -170,7 +170,7 @@ const MyCart = () => {
                         {isPreviewing ? (
                             <>
                                 <h2 className="text-2xl font-bold mb-2">Preview Order</h2>
-                                {tableData.map(item => (
+                                {tableData?.map(item => (
                                     <div key={item.cartId} className="border p-4 rounded-md shadow space-y-1">
                                         <div className="font-semibold">{item.foodName}</div>
                                         <div>Quantity: {item.quantity}</div>
@@ -195,7 +195,7 @@ const MyCart = () => {
                             </>
                         ) : (
                             <>
-                                {tableData.map(item => (
+                                {tableData?.map(item => (
                                     <div key={item.cartId} className="flex items-center gap-4 border p-4 rounded-md shadow">
                                         <img src={item.foodImage || "https://via.placeholder.com/80"} alt="Food" className="w-20 h-20 object-cover rounded" />
                                         <div className="flex-1 space-y-1">

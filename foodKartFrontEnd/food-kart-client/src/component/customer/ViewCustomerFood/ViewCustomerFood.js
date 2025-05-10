@@ -3,7 +3,9 @@ import React, {useEffect, useState} from 'react';
 import TableComponent from "../../admin/common/TableComponent/TableComponent";
 import FoodTable from "./FoodTable/FoodTable";
 
-const ViewCustomerFood = () => {
+const ViewCustomerFood = ({
+                              setLoadingComponentName,
+                          }) => {
     const [tableData, setTableData] = useState([]);
 
     const fetchMyCartDataFromBackend = async () => {
@@ -32,6 +34,7 @@ const ViewCustomerFood = () => {
                 // />
                 <FoodTable
                     foods={tableData}
+                    setLoadingComponentName={setLoadingComponentName}
                 />
             )}
 

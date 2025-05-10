@@ -22,11 +22,12 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public Customer createCustomer(Customer customer) {
-        if (isCustomerEmailAlreadyExists(customer.getEmail())){
-            throw  new DetailsAlreadyExistsException(customer.getEmail() + " already exists!");
+    public Object createCustomer(Customer customer) {
+        if (isCustomerEmailAlreadyExists(customer.getEmail())) {
+            return customer.getEmail() + " already exists!";
         }
-        return customerRepository.save(customer);
+        Customer savedCustomer = customerRepository.save(customer);
+        return savedCustomer;
     }
 
     public void deleteCustomer(String email) {

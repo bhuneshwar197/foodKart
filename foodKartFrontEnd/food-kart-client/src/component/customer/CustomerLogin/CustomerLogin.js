@@ -26,11 +26,6 @@ const CustomerLogin = ({
     // http://localhost:9192/customer/get-customer-emailAndpassword?email=bhunesh2@&password=password
     const handleLogin = async () => {
         try {
-            // const response = await axios.post('http://localhost:9192/customer/get-customer-by-email-and-password', {
-            // const response = await axios.post('http://localhost:9192/customer/get-customer-emailAndpassword', {
-            //     email: username,
-            //     password: password,
-            // });
 
             const response = await axios.get('http://localhost:9192/customer/get-customer-emailAndpassword', {
                 params: {
@@ -42,6 +37,7 @@ const CustomerLogin = ({
             if (response.data) {
                 setCustomerEmail(response.data.email);
                 setLoadingComponentName("home");
+                return;
             } else {
                 setErrorMessage('Invalid username or password');
             }
@@ -52,11 +48,9 @@ const CustomerLogin = ({
     };
 
     const handleForgotPassword = () => {
-        alert('Redirect to Forgot Password page (You can implement this navigation)');
-        // Example: navigate('/forgotPassword');
+        setLoadingComponentName('forgotCustomerPassword');
     };
 
-    console.log("customerEmail in CustomerLogin = 33333333 ", customerEmail)
     return (
         <div style={styles.container}>
             <h2>Login</h2>

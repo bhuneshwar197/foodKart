@@ -29,6 +29,11 @@ import SendFeedback from "../../SendFeedback/SendFeedback";
 import ViewCustomerFood from "../../ViewCustomerFood/ViewCustomerFood";
 import CustomerLogin from "../../CustomerLogin/CustomerLogin";
 import {CustomerContext, CustomerProvider} from "../../CustomerLoginContextAndProvider/CustomerLoginContextAndProvider";
+import ViewCustomerOrders from "../../ViewCustomerOrders/ViewCustomerOrders";
+import CustomerNotLoginOrSignedUp from "../../CustomerNotLoginOrSignedUp/CustomerNotLoginOrSignedUp";
+import CustomerSignup from "../../CustomerSignup/CustomerSignup";
+import ResetCustomerPassword from "../../ResetCustomerPassword/ResetCustomerPassword";
+import ForgotCustomerPassword from "../../ForgotCustomerPassword/ForgotCustomerPassword";
 // import DeleteFoodByFoodId from "./DeleteFoodByFoodId/DeleteFoodByFoodId";
 // import ViewFoodByFoodId from "./ViewFoodByFoodId/ViewFoodByFoodId";
 
@@ -37,25 +42,24 @@ const componentsName = {
     contactUs: 'contactUs',
     aboutUs: 'aboutUs',
     customerLogin: 'customerLogin',
+    customerSignup: 'customerSignup',
+    viewCustomerOrders: 'viewCustomerOrders',
+    viewCustomerFood: 'viewCustomerFood',
+    viewCustomerFeedback: 'viewCustomerFeedback',
+    sendFeedback: 'sendFeedback',
+    myCart: 'myCart',
+    customerNotLoginOrSignedUp: 'customerNotLoginOrSignedUp',
+    forgotCustomerPassword: 'forgotCustomerPassword',
 };
 
 
 const CustomerHomePage = () => {
-    // const [customerEmail, setCustomerEmail] =  useContext(CustomerContext);
 
     const {customerEmail, setCustomerEmail} =  useContext(CustomerContext);
 
 
     const [openSubMenu, setOpenSubMenu] = useState(null);
     const [loadingComponentName, setLoadingComponentName] = useState(null);
-
-    const handleAddFoodClick = async () => {
-        setLoadingComponentName(componentsName.addFood);
-    };
-
-    const handleViewAdminClick = async () => {
-        setLoadingComponentName(componentsName.viewAdmin);
-    };
 
     const styles = {
         nav: { display: "flex", justifyContent: "space-around", background: "#333", padding: "10px", color: "white" },
@@ -71,7 +75,68 @@ const CustomerHomePage = () => {
         },
     };
 
-    console.log("customerEmail in customerHomepage ======" +customerEmail);
+    const handleCustomerLogout = () => {
+        setCustomerEmail("");
+        setLoadingComponentName(componentsName.home);
+        setOpenSubMenu(null);
+    };
+
+    const handleHomeMenuClick = () => {
+        setLoadingComponentName(componentsName.home);
+        setOpenSubMenu(null);
+    };
+
+    const handleViewCustomerFoodClick = () => {
+        setLoadingComponentName(componentsName.viewCustomerFood);
+        setOpenSubMenu(null);
+    };
+
+    const handleAboutUsClick = () => {
+        setLoadingComponentName(componentsName.aboutUs);
+        setOpenSubMenu(null);
+    }
+
+    const handleCustomerLogin = () => {
+        setLoadingComponentName(componentsName.customerLogin);
+        setOpenSubMenu(null);
+    }
+
+    const handleCustomerSignup = () => {
+        setLoadingComponentName(componentsName.customerSignup);
+        setOpenSubMenu(null);
+    }
+
+    const handleSendFeedback = () => {
+        const loadComponent = customerEmail ? componentsName.sendFeedback : componentsName.customerNotLoginOrSignedUp;
+        setLoadingComponentName(loadComponent);
+        setOpenSubMenu(null);
+    }
+
+
+    const handleViewFeedback = () => {
+        const loadComponent = customerEmail ? componentsName.viewCustomerFeedback : componentsName.customerNotLoginOrSignedUp;
+        setLoadingComponentName(loadComponent);
+        setOpenSubMenu(null);
+    }
+
+    const handleMyOrderClick = () => {
+        setLoadingComponentName('');
+        const loadComponent = customerEmail ? componentsName.viewCustomerOrders : componentsName.customerNotLoginOrSignedUp;
+        setLoadingComponentName(loadComponent);
+        setOpenSubMenu(null);
+    }
+
+    const handleMyCartClick = () => {
+        const loadComponent = customerEmail ? componentsName.myCart : componentsName.customerNotLoginOrSignedUp;
+        setLoadingComponentName(loadComponent);
+        setOpenSubMenu(null);
+    }
+
+    const handleContactUsClick = () => {
+        setLoadingComponentName(componentsName.contactUs);
+        setOpenSubMenu(null);
+    }
+
     return (
 
         <div>
@@ -79,14 +144,13 @@ const CustomerHomePage = () => {
             <nav style={styles.nav}>
                 <div className="logo-contaoner">
                     <div className="logo">foodKART</div>
-                    {/*<div className="logo"> Welcome {customerEmail}</div>*/}
                 </div>
 
                 <div
                     style={styles.menuItem}
                     onMouseEnter={() => setOpenSubMenu("Home")}
                     onMouseLeave={() => setOpenSubMenu(null)}
-                    onClick={() => setLoadingComponentName(componentsName.home)}
+                    onClick={handleHomeMenuClick}
                 >
                     <span>Home</span>
 
@@ -104,38 +168,11 @@ const CustomerHomePage = () => {
                             <li>
                                 <span
                                     style={styles.submenuItem}
-                                    onClick={() => setLoadingComponentName("ViewCustomerFood")}
+                                    onClick={handleViewCustomerFoodClick}
                                 >
                                     View Food
                                 </span>
                             </li>
-
-                            <li>
-                                <span style={styles.submenuItem}
-                                      onClick={() => handleAddFoodClick()}
-                                >
-                                    Add Food
-                                </span>
-                            </li>
-
-                            <li>
-                                <span
-                                    style={styles.submenuItem}
-                                    onClick={() => setLoadingComponentName(componentsName.viewFoodByFoodId)}
-                                >
-                                    View Food by Food Id
-                                </span>
-                            </li>
-
-                            <li>
-                                <span
-                                    style={styles.submenuItem}
-                                    onClick={() => setLoadingComponentName(componentsName.deleteFoodByFoodId)}
-                                >
-                                    Delete Food by Food Id
-                                </span>
-                            </li>
-
 
                         </ul>
                     )}
@@ -145,7 +182,7 @@ const CustomerHomePage = () => {
                     style={styles.menuItem}
                     onMouseEnter={() => setOpenSubMenu("AboutUs")}
                     onMouseLeave={() => setOpenSubMenu(null)}
-                    onClick={() => setLoadingComponentName(componentsName.aboutUs)}
+                    onClick={handleAboutUsClick}
                 >
                     <span>About Us</span>
                 </div>
@@ -154,12 +191,10 @@ const CustomerHomePage = () => {
                     style={styles.menuItem}
                     onMouseEnter={() => setOpenSubMenu("ContactUs")}
                     onMouseLeave={() => setOpenSubMenu(null)}
-                    onClick={() => setLoadingComponentName(componentsName.contactUs)}
+                    onClick={handleContactUsClick}
                 >
                     <span>Contact Us</span>
                 </div>
-
-
 
                 <div
                     style={styles.menuItem}
@@ -174,9 +209,20 @@ const CustomerHomePage = () => {
                                 <li>
                                 <span
                                     style={styles.submenuItem}
-                                    onClick={() => setLoadingComponentName(componentsName.customerLogin)}
+                                    onClick={handleCustomerLogin}
                                 >
                                     Login
+                                </span>
+                                </li>
+                            )}
+
+                            {!customerEmail  && (
+                                <li>
+                                <span
+                                    style={styles.submenuItem}
+                                    onClick={handleCustomerSignup}
+                                >
+                                    Sign Up
                                 </span>
                                 </li>
                             )}
@@ -184,7 +230,7 @@ const CustomerHomePage = () => {
                             <li>
                                 <span
                                     style={styles.submenuItem}
-                                    onClick={() => setLoadingComponentName("myCart")}
+                                    onClick={handleMyCartClick}
                                 >
                                     My Cart
                                 </span>
@@ -193,7 +239,7 @@ const CustomerHomePage = () => {
                             <li>
                                 <span
                                     style={styles.submenuItem}
-                                    onClick={() => setLoadingComponentName(componentsName.viewFeedback)}
+                                    onClick={handleMyOrderClick}
                                 >
                                     My Order
                                 </span>
@@ -202,7 +248,7 @@ const CustomerHomePage = () => {
                             <li>
                                 <span
                                     style={styles.submenuItem}
-                                    onClick={() => setLoadingComponentName("viewCustomerFeedback")}
+                                    onClick={handleViewFeedback}
                                 >
                                     View Feedback
                                 </span>
@@ -211,18 +257,17 @@ const CustomerHomePage = () => {
                             <li>
                                 <span
                                     style={styles.submenuItem}
-                                    onClick={() => setLoadingComponentName("sendFeedback")}
+                                    onClick={handleSendFeedback}
                                 >
                                     Send Feedback
                                 </span>
                             </li>
 
-
                             {customerEmail  && (
                                 <li>
                                     <span
                                         style={styles.submenuItem}
-                                        onClick={() => setCustomerEmail("")}
+                                        onClick={handleCustomerLogout}
                                     >
                                         Logout
                                     </span>
@@ -245,22 +290,34 @@ const CustomerHomePage = () => {
                     return <ContactUs />
                 } else if (loadingComponentName === componentsName.aboutUs) {
                     return <AboutUs />
+                } else if (loadingComponentName === componentsName.customerSignup) {
+                    return <CustomerSignup
+                        setLoadingComponentName = {setLoadingComponentName}
+                    />
                 } else if (loadingComponentName === componentsName.customerLogin) {
                     return <CustomerLogin
                         loadingComponentName = {loadingComponentName}
                         setLoadingComponentName = {setLoadingComponentName}
                     />
-                } else if (loadingComponentName === "myCart") {
+                } else if (loadingComponentName === componentsName.myCart) {
                     return <MyCart />
                 }
-                else if (loadingComponentName === "viewCustomerFeedback") {
+                else if (loadingComponentName === componentsName.viewCustomerFeedback) {
                     return <ViewCustomerFeedback/>
                 }
-                else if (loadingComponentName === "sendFeedback") {
+                else if (loadingComponentName === componentsName.sendFeedback) {
                     return <SendFeedback/>
                 }
-                else if (loadingComponentName === "ViewCustomerFood") {
-                    return <ViewCustomerFood/>
+                else if (loadingComponentName === componentsName.viewCustomerFood) {
+                    return <ViewCustomerFood
+                        setLoadingComponentName = {setLoadingComponentName}
+                    />
+                } else if (loadingComponentName === componentsName.viewCustomerOrders) {
+                    return <ViewCustomerOrders/>
+                } else if (loadingComponentName === componentsName.customerNotLoginOrSignedUp) {
+                    return <CustomerNotLoginOrSignedUp />
+                } else if (loadingComponentName === componentsName.forgotCustomerPassword) {
+                    return <ForgotCustomerPassword />
                 }
 
 

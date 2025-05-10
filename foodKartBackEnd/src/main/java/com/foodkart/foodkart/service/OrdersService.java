@@ -43,16 +43,16 @@ public class OrdersService {
 
         orderListByEmail.forEach(orderByEmail -> {
             List<FoodDetail> foodDetails = new ArrayList<>();
-            List<PrepareOrder> prepareOrderList = prepareOrderRepository.findByOrderId(orderByEmail.getOrderId());
+            List<PrepareOrder> preparedOrderListByOrderId = prepareOrderRepository.findByOrderId(orderByEmail.getOrderId());
 
-            prepareOrderList.forEach(prepareOrder -> {
-                Food food = foodRepository.findByFoodId(prepareOrder.getFoodId());
+            preparedOrderListByOrderId.forEach(preparedOrderByOrderId -> {
+                Food food = foodRepository.findByFoodId(preparedOrderByOrderId.getFoodId());
                 FoodDetail foodDetail = FoodDetail
                         .builder()
-                        .foodId(prepareOrder.getFoodId())
+                        .foodId(preparedOrderByOrderId.getFoodId())
                         .foodImage(food.getImage())
-                        .quantity(prepareOrder.getQuantity())
-                        .soldPrice(prepareOrder.getSoldPrice())
+                        .quantity(preparedOrderByOrderId.getQuantity())
+                        .soldPrice(preparedOrderByOrderId.getSoldPrice())
                         .build();
                 foodDetails.add(foodDetail);
             });
@@ -67,6 +67,7 @@ public class OrdersService {
                     .mobile(orderByEmail.getMobile())
                     .pincode(orderByEmail.getPincode())
                     .deliveryAddress(orderByEmail.getDeliveryAddress())
+                    .deliveryStatus(orderByEmail.getOrderStatus())
                     .foodDetails(foodDetails)
                     .build();
             customerOrderResponseList.add(customerOrderResponse);

@@ -2,7 +2,7 @@ import React, {useContext, useState} from "react";
 import axios from "axios";
 import {CustomerContext} from "../../CustomerLoginContextAndProvider/CustomerLoginContextAndProvider";
 
-const FoodTable = ({ foods }) => {
+const FoodTable = ({ foods, setLoadingComponentName }) => {
     const [quantities, setQuantities] = useState({});
     const {customerEmail} =  useContext(CustomerContext);
 
@@ -14,23 +14,27 @@ const FoodTable = ({ foods }) => {
     };
 
     const handleAddToCart = async (food) => {
-        const quantity = quantities[food.foodId] || 1;
+        if(!customerEmail) {
+            setLoadingComponentName('customerNotLoginOrSignedUp')
+        } else {
+            const quantity = quantities[food.foodId] || 1;
+            const cartItem = {
+                email: customerEmail,
+                foodId: food.foodId,
+                quantity: quantity,
+                insertedDate: "2024-03-26",
+                // sellingPrice: food.sellingPrice,
+            };
 
-        const cartItem = {
-            email: customerEmail,
-            foodId: food.foodId,
-            quantity: quantity,
-            insertedDate: "2024-03-26",
-            // sellingPrice: food.sellingPrice,
-        };
-
-        try {
-            await axios.post("http://localhost:9192/cart/create-cart", cartItem);
-            alert(`Added ${quantity} x ${food.foodName} to cart.`);
-        } catch (error) {
-            console.error("Error adding to cart:", error);
-            alert("Failed to add to cart.");
+            try {
+                await axios.post("http://localhost:9192/cart/create-cart", cartItem);
+                alert(`Added ${quantity} x ${food.foodName} to cart.`);
+            } catch (error) {
+                console.error("Error adding to cart:", error);
+                alert("Failed to add to cart.");
+            }
         }
+
     };
 
     return (

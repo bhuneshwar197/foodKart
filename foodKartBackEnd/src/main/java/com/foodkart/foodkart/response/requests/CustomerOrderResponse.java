@@ -21,6 +21,7 @@ public class CustomerOrderResponse {
     private Long mobile;
     private String pincode;
     private String deliveryAddress;
+    private String deliveryStatus;
     private List<FoodDetail> foodDetails;
 }
 

@@ -1,6 +1,7 @@
 package com.foodkart.foodkart.controller;
 
 import com.foodkart.foodkart.model.Orders;
+import com.foodkart.foodkart.response.requests.CustomerOrderResponse;
 import com.foodkart.foodkart.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/orders")
+@CrossOrigin("http://localhost:3000")
 public class OrdersController {
 
     @Autowired
@@ -27,9 +29,9 @@ public class OrdersController {
         return ResponseEntity.ok(ordersService.getByOrderId(orderId));
     }
 
-    @GetMapping("/get-by-email/{email}")
-    public ResponseEntity<List<Orders>> getByEmail(@PathVariable String email) {
-        return ResponseEntity.ok(ordersService.getByEmail(email));
+    @GetMapping("/get-customer-order-by-email/{email}")
+    public ResponseEntity<List<CustomerOrderResponse>> getCustomerOrderByEmail(@PathVariable String email) {
+        return ResponseEntity.ok(ordersService.getCustomerOrderByEmail(email));
     }
 
     @GetMapping("/get-by-orderedDate/{orderedDate}")
@@ -45,8 +47,8 @@ public class OrdersController {
     }
 
     @GetMapping("/get-by-status/{status}")
-    public ResponseEntity<List<Orders>> getByStatus(@PathVariable String status) {
-        return ResponseEntity.ok(ordersService.getByStatus(status));
+    public ResponseEntity<List<Orders>> getByOrderStatus(@PathVariable String status) {
+        return ResponseEntity.ok(ordersService.getByOrderStatus(status));
     }
 
     @GetMapping("/get-by-deliveredBy/{deliveredBy}")

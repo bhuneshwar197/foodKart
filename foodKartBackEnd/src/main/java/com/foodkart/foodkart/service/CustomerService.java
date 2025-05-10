@@ -22,11 +22,12 @@ public class CustomerService {
         return customerRepository.findAll();
     }
 
-    public Customer createCustomer(Customer customer) {
-        if (isCustomerEmailAlreadyExists(customer.getEmail())){
-            throw  new DetailsAlreadyExistsException(customer.getEmail() + " already exists!");
+    public Object createCustomer(Customer customer) {
+        if (isCustomerEmailAlreadyExists(customer.getEmail())) {
+            return customer.getEmail() + " already exists!";
         }
-        return customerRepository.save(customer);
+        Customer savedCustomer = customerRepository.save(customer);
+        return savedCustomer;
     }
 
     public void deleteCustomer(String email) {
@@ -45,6 +46,21 @@ public class CustomerService {
         customer.setPassword(password);
         return customerRepository.save(customer);
     }
+
+    public Customer getCustomerByEmailAndPassword(String email, String password) {
+
+        Customer customer = customerRepository.findByEmailAndPassword(email,password);
+        return customer;
+    }
+
+//    public Customer getByEmailAndPassword(String email, String password) {
+//        if (!isCustomerEmailAlreadyExists(email)){
+//            throw new DetailsNotFoundException("Sorry, customer not found with email: " + email);
+//        }
+//        Customer customer = customerRepository.findByEmailAndPassword(email);
+//        customer.setPassword(password);
+//        return customerRepository.save(customer);
+//    }
 
     private boolean isCustomerEmailAlreadyExists(String email) {
         Customer customer = customerRepository.findByEmail(email);

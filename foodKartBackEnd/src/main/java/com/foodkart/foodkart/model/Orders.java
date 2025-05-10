@@ -1,10 +1,7 @@
 package com.foodkart.foodkart.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,8 +15,10 @@ import java.time.LocalDate;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "orders")
 public class Orders {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -40,11 +39,20 @@ public class Orders {
     @Column(name = "delivery_date")
     private LocalDate deliveryDate;
 
+    @Column(name = "order_status", length = 200)
+    private String orderStatus;
+
+    @Column(name = "customer_name", length = 100, nullable = false)
+    private String customerName;
+
+    @Column(name = "mobile", nullable = false)
+    private Long mobile;
+
+    @Column(name = "pincode", length = 300)
+    private String pincode;
+
     @Column(name = "delivery_address", length = 300)
     private String deliveryAddress;
-
-    @Column(name = "status", length = 200)
-    private String status;
 
     @Column(name = "delivered_by", length = 300)
     private String deliveredBy;

@@ -13,6 +13,6 @@ public interface OrdersRepository extends JpaRepository<Orders, Long> {
     List<Orders> findByEmail(String email);
     List<Orders> findByOrderedDate(LocalDate orderedDate);
     List<Orders> findByDeliveryDate(LocalDate deliveryDate);
-    List<Orders> findByStatus(String status);
+    List<Orders> findByOrderStatus(String status);
     List<Orders> findByDeliveredBy(String deliveredBy);
 }

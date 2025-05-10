@@ -37,6 +37,6 @@ public class Cart {
     @Column(name = "inserted_date")
     private LocalDate insertedDate;
 
-    @Column(name = "selling_price", precision = 10, scale = 2)
-    private BigDecimal sellingPrice;
+//    @Column(name = "selling_price", precision = 10, scale = 2)
+//    private BigDecimal sellingPrice;
 }

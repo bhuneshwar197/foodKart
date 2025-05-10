@@ -114,10 +114,6 @@ public class CartService {
 
     public void deleteCartByEmailAndFoodId(String email, String foodId) {
         Cart cartItems = cartRepository.findByEmailAndFoodId(email, foodId);
-//        Optional<Cart> existingCart = cartItems.stream()
-//                .filter(cart -> cart.getFoodId().equals(foodId))
-//                .findFirst();
-        //if (existingCart.isPresent()) {
         if (cartItems != null) {
             cartRepository.deleteByEmailAndFoodId(email, foodId);
         } else {

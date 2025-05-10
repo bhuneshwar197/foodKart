@@ -25,7 +25,7 @@ public class PrepareOrderService {
     public String createOrder( PreparedOrderRequest preparedOrderRequest) {
         String orderId = UUID.randomUUID().toString();
         final BigDecimal[] totalPrice = {BigDecimal.valueOf(0.0)};
-        preparedOrderRequest.getFoodDetails ().forEach(preparedOrderItem -> {
+        preparedOrderRequest.getFoodDetails().forEach(preparedOrderItem -> {
             PrepareOrder preparedOrder = new PrepareOrder();
             preparedOrder.setOrderId(orderId);
             preparedOrder.setEmail(preparedOrderRequest.getEmail());

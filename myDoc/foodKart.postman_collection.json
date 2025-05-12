@@ -1,0 +1,1392 @@
+{
+	"info": {
+		"_postman_id": "1d7bf451-3ed0-4da4-a164-8fe9682af03b",
+		"name": "foodKart",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20330436"
+	},
+	"item": [
+		{
+			"name": "customerOperation",
+			"item": [
+				{
+					"name": "getAllCustomers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/customer/get-all-customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"customer",
+								"get-all-customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCustomerByEmailAndPassword",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/customer/get-customer-emailAndpassword?email=bhunesh2@&password=password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"customer",
+								"get-customer-emailAndpassword"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "bhunesh2@"
+								},
+								{
+									"key": "password",
+									"value": "password"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCustomer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"bhunesh2@\",\r\n\t\"name\": \"bhunesh kumar\",\r\n\t\"mobile\": \"8102235197\",\r\n\t\"password\": \"password\",\r\n    \"address\": \"atka bagodar giridih\",\r\n    \"pincode\": \"825322\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/customer/create-customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"customer",
+								"create-customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePassword",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/customer/update-password?email=bhunesh2@&password=1111111111",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"customer",
+								"update-password"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "bhunesh2@"
+								},
+								{
+									"key": "password",
+									"value": "1111111111"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCustomerByEmail",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"firstName\": \"bhunesh\",\r\n\t\"lastName\": \"kumar\",\r\n\t\"email\": \"bhunesh323@gmail.com\",\r\n\t\"department\": \"math\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/customer/delete-customer/bhunesh@",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"customer",
+								"delete-customer",
+								"bhunesh@"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "adminOperation",
+			"item": [
+				{
+					"name": "getAllAdmins",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/admin/get-all-admins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"admin",
+								"get-all-admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"bhunesh2@\",\r\n\t\"name\": \"bhunesh kumar\",\r\n\t\"mobile\": \"8102235197\",\r\n\t\"password\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/admin/create-admin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"admin",
+								"create-admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updatePassword",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"firstName\": \"bhunesh\",\r\n\t\"lastName\": \"kumar\",\r\n\t\"email\": \"bhunesh323@gmail.com\",\r\n\t\"department\": \"math\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/admin/update-password?email=bhunesh@&password=22222222",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"admin",
+								"update-password"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "bhunesh@"
+								},
+								{
+									"key": "password",
+									"value": "22222222"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAdminByEmail",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"firstName\": \"bhunesh\",\r\n\t\"lastName\": \"kumar\",\r\n\t\"email\": \"bhunesh323@gmail.com\",\r\n\t\"department\": \"math\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/admin/delete-admin/bhunesh1@",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"admin",
+								"delete-admin",
+								"bhunesh1@"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "feedbackOperation",
+			"item": [
+				{
+					"name": "getAllFeedback",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9192/feedback/get-all-feedback",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"feedback",
+								"get-all-feedback"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createFeedback",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"email\": \"bhunesh1@\",\r\n\t\"timestamp\": \"timestamp\",\r\n\t\"subject\": \"subject\",\r\n\t\"message\": \"message\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/feedback/create-feedback",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"feedback",
+								"create-feedback"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteFeedbackByEmail",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"firstName\": \"bhunesh\",\r\n\t\"lastName\": \"kumar\",\r\n\t\"email\": \"bhunesh323@gmail.com\",\r\n\t\"department\": \"math\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/feedback/delete-feedback-by-email/bhunesh1@",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"feedback",
+								"delete-feedback-by-email",
+								"bhunesh1@"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFeedbackByEmail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"firstName\": \"bhunesh\",\r\n\t\"lastName\": \"kumar\",\r\n\t\"email\": \"bhunesh323@gmail.com\",\r\n\t\"department\": \"math\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/feedback/get-feedback-by-email/bhunesh1@",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"feedback",
+								"get-feedback-by-email",
+								"bhunesh1@"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "foodOperation",
+			"item": [
+				{
+					"name": "getAllFoods",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/food/get-all-food",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"food",
+								"get-all-food"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createFood",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"foodId\": \"4\",\r\n  \"foodName\": \"Pizza Margherita4\",\r\n  \"sellingPrice\": 15.99,\r\n  \"description\": \"Classic pizza with mozzarella cheese, tomatoes, and fresh basil.\",\r\n  \"image\": \"\", \r\n  \"qty\": 100,\r\n  \"category\": \"Italian\",\r\n  \"type\": \"Main Course\",\r\n  \"cartLimit\": 5,\r\n  \"rating1\": 1,\r\n  \"rating2\": 2,\r\n  \"rating3\": 3,\r\n  \"rating4\": 4,\r\n  \"rating5\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/food/create-food",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"food",
+								"create-food"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateFood",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"foodId\": \"F12345\",\r\n  \"foodName\": \"Pizza Margherita\",\r\n  \"sellingPrice\": 15.99,\r\n  \"description\": \"Classic pizza with mozzarella cheese, tomatoes, and fresh basil.\",\r\n  \"image\": \"\", \r\n  \"qty\": 100,\r\n  \"category\": \"Italian\",\r\n  \"type\": \"Main Course\",\r\n  \"cartLimit\": 5,\r\n  \"rating1\": 1,\r\n  \"rating2\": 2,\r\n  \"rating3\": 3,\r\n  \"rating4\": 4,\r\n  \"rating5\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/food/update-food",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"food",
+								"update-food"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFoodByFoodId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/food/get-food-by-food-id/F12345",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"food",
+								"get-food-by-food-id",
+								"F12345"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteFoodByFoodId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9192/food/delete-food-by-food-id/F12345",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"food",
+								"delete-food-by-food-id",
+								"F12345"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cartOperation",
+			"item": [
+				{
+					"name": "getAllCart",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/cart/get-all-cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"cart",
+								"get-all-cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createCart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"bhunesh@\",\r\n  \"foodId\": \"F12345\",\r\n  \"quantity\": 2,\r\n  \"sellingPrice\": 15.99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/cart/create-cart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"cart",
+								"create-cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateCart",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/cart/update-cart-by-email-and-food-id?email=bhunesh@&foodId=F123456&quantity=300",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"cart",
+								"update-cart-by-email-and-food-id"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "bhunesh@"
+								},
+								{
+									"key": "foodId",
+									"value": "F123456"
+								},
+								{
+									"key": "quantity",
+									"value": "300"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCartByEmail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/cart/get-cart-by-email/sakshi@",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"cart",
+								"get-cart-by-email",
+								"sakshi@"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteCartByEmailAndFoodId",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/cart/delete-cart-by-email-and-food-id?email=bhunesh@&foodId=F123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"cart",
+								"delete-cart-by-email-and-food-id"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "bhunesh@"
+								},
+								{
+									"key": "foodId",
+									"value": "F123456"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orderHistoryOperation",
+			"item": [
+				{
+					"name": "createOrderHistory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\"email\":\"bhunesh2@\",\"foodDetails\":[{\"foodId\":\"1\",\"quantity\":3,\"soldPrice\":15.99},{\"foodId\":\"2\",\"quantity\":3,\"soldPrice\":15.99}],\"customerName\":\"aaa\",\"mobile\":\"6207512703\",\"pincode\":\"560066\",\"deliveryAddress\":\"NAWALSHAHI\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/prepare-order/create-prepared-order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"prepare-order",
+								"create-prepared-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOrderHistoryByOrderId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/prepare-order/prepared-order-by-order-id/12345",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"prepare-order",
+								"prepared-order-by-order-id",
+								"12345"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllOrderHistory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/prepare-order/get-all-prepared-order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"prepare-order",
+								"get-all-prepared-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOrderHistoryByEmail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/prepare-order/prepared-order-by-email/bhunesh@",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"prepare-order",
+								"prepared-order-by-email",
+								"bhunesh@"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getOrderHistoryByOrderIdAndEmail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/prepare-order/prepared-order-by-order-id-and-email/12345/bhunesh@",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"prepare-order",
+								"prepared-order-by-order-id-and-email",
+								"12345",
+								"bhunesh@"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"item": [
+				{
+					"name": "createOrders",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": \"123456\",\r\n  \"email\": \"bhunesh@\",\r\n  \"totalPrice\": 49.99,\r\n  \"orderedDate\": \"2024-03-25\",\r\n  \"deliveryDate\": \"2024-03-30\",\r\n  \"deliveryAddress\": \"123 Main Street, City, Country\",\r\n  \"status\": \"Pending\",\r\n  \"deliveredBy\": \"123456\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/orders/create-order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"orders",
+								"create-order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByOrderId",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/orders/get-by-orderId/123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"orders",
+								"get-by-orderId",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByEmail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/orders/get-customer-order-by-email/bhunesh2@",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"orders",
+								"get-customer-order-by-email",
+								"bhunesh2@"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByOrderedDate",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/orders/get-by-orderedDate/2024-03-25",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"orders",
+								"get-by-orderedDate",
+								"2024-03-25"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByDeliveryDate",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/orders/get-by-deliveryDate/2024-03-30",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"orders",
+								"get-by-deliveryDate",
+								"2024-03-30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByStatus",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/orders/get-by-status/pending",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"orders",
+								"get-by-status",
+								"pending"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deliveredBy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/orders/get-by-deliveredBy/123456",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"orders",
+								"get-by-deliveredBy",
+								"123456"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "employee",
+			"item": [
+				{
+					"name": "addEmployee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ename\": \"bhunesh\",\r\n  \"empid\": \"1234561\",\r\n  \"email\": \"bhunesh1@\",\r\n  \"address\": \"123 Main Street, New York\",\r\n  \"mobile\": 8102235197\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/employee/add-employee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"employee",
+								"add-employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateEmployee",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ename\": \"bhunesh\",\r\n  \"empid\": \"123456\",\r\n  \"email\": \"bhunesh@\",\r\n  \"address\": \"123 Main Street, New York\",\r\n  \"mobile\": 81022351977\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/employee/update-employee/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"employee",
+								"update-employee",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllEmployees",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/employee/get-all-employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"employee",
+								"get-all-employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEmployeeByName",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/employee/get-employee-by-name/bhunesh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"employee",
+								"get-employee-by-name",
+								"bhunesh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEmployeeByEmail",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/employee/get-employee-by-email/bhunesh@",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"employee",
+								"get-employee-by-email",
+								"bhunesh@"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEmployeeByMobile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/employee/get-employee-by-mobile/8102235197",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"employee",
+								"get-employee-by-mobile",
+								"8102235197"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteEmployeeByEmail",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9192/employee/delete-employee-by-email/bhunesh@1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9192",
+							"path": [
+								"employee",
+								"delete-employee-by-email",
+								"bhunesh@1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

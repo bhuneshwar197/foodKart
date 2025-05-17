@@ -1,22 +1,12 @@
 
 
 
-create user userName identified by password;
-grant connect to userName;
-grant all privileges to userName;
+http://localhost:3000/foodkart 
+
+gitHub: https://github.com/Sakshi-bit123/foodkart
 
 
-create user food1 identified by food1;
-grant connect to food1;
-grant all privileges to food1;
-
-gitHub: https://github.com/bhuneshwar197/foodKart 
-git clone https://github.com/bhuneshwar197/foodKart.git
-
-create branch in remote: feature/bhunesh
-
-git checkout feature/bhunesh
-
+in mySql
 CREATE DATABASE foodKart_database;
 use foodKart_database;
 SELECT DATABASE();
@@ -85,7 +75,7 @@ create table feedback
 (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	email VARCHAR(50) NOT NULL,
-	timestamp varchar(50),
+	timestamp Date,
 	subject varchar(500),
 	message varchar(3000)
 );
@@ -111,8 +101,8 @@ CREATE TABLE food (
     rating5 INT
 );
 
-category: veg/nonveg
-type: 
+category: veg/nonveg/all
+type: breakfast/dinner/lunch/all
 
 
 ALTER TABLE food MODIFY COLUMN image LONGBLOB;
@@ -236,3 +226,27 @@ context in react
         )}
     </td>
 </tr>
+
+
+sending data to backend: 
+
+pathParam
+
+http://localhost:9192/customer/delete-customer/bhunesh@
+
+
+queryparam
+
+http://localhost:9192/customer/get-customer-emailAndpassword?email=bhunesh2@&password=password
+
+
+RequestBody
+
+{
+	"email": "bhunesh2@",
+	"name": "bhunesh kumar",
+	"mobile": "8102235197",
+	"password": "password",
+    "address": "atka bagodar giridih",
+    "pincode": "825322"
+}

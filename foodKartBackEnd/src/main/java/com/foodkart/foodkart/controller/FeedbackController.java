@@ -1,6 +1,7 @@
 package com.foodkart.foodkart.controller;
 
 import com.foodkart.foodkart.model.Admin;
+import com.foodkart.foodkart.model.CustomerFeedbackRequest;
 import com.foodkart.foodkart.model.Feedback;
 import com.foodkart.foodkart.service.AdminService;
 import com.foodkart.foodkart.service.FeedbackService;
@@ -33,8 +34,8 @@ public class FeedbackController {
     }
 
     @PostMapping("/create-feedback")
-    public Feedback createFeedback(@RequestBody Feedback feedback) {
-        return feedbackService.createFeedback(feedback);
+    public Feedback createFeedback(@RequestBody CustomerFeedbackRequest customerFeedbackRequest) {
+        return feedbackService.createFeedback(customerFeedbackRequest);
     }
 
     @DeleteMapping("/delete-feedback-by-email/{email}")

@@ -8,7 +8,7 @@ const ViewCustomerFood = ({
                           }) => {
     const [tableData, setTableData] = useState([]);
 
-    const fetchMyCartDataFromBackend = async () => {
+    const fetchFoodData = async () => {
         try {
             const response = await fetch("http://localhost:9192/food/get-all-food" );
             const data = await response.json();
@@ -20,7 +20,7 @@ const ViewCustomerFood = ({
 
     useEffect(() => {
         setTableData([]);
-        fetchMyCartDataFromBackend().then(setTableData);
+        fetchFoodData().then(setTableData);
     }, []);
 
     return (

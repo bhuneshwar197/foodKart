@@ -38,12 +38,12 @@ public class CustomerService {
         customerRepository.deleteById(customer.getId());
     }
 
-    public Customer updatePassword(String email, String password) {
+    public Customer updatePassword(String email, String newPassword) {
         if (!isCustomerEmailAlreadyExists(email)){
             throw new DetailsNotFoundException("Sorry, customer not found with email: " + email);
         }
         Customer customer = customerRepository.findByEmail(email);
-        customer.setPassword(password);
+        customer.setPassword(newPassword);
         return customerRepository.save(customer);
     }
 

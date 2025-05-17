@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import TableComponent from "../../admin/common/TableComponent/TableComponent";
+import {CustomerContext} from "../CustomerLoginContextAndProvider/CustomerLoginContextAndProvider";
 
 const ViewCustomerFeedback = () => {
-    const [tableData, setTableData] = useState([]);
+    const [feedbackData, setFeedbackData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const {customerEmail, setCustomerEmail} =  useContext(CustomerContext);
 
-    const fetchMyCartDataFromBackend = async () => {
-        const customerEmail = "customer@example.com";
+
+    const fetchCustomerFeedbackDataFromBackend = async () => {
+
         try {
-            const response = await fetch("http://localhost:9192/cart1/get-cart-by-email/" + customerEmail);
+            const response = await fetch("http://localhost:9192/feedback/get-feedback-by-email/" + customerEmail);
             const data = await response.json();
             return data;
         } catch (error) {
@@ -19,25 +22,38 @@ const ViewCustomerFeedback = () => {
 
     useEffect(() => {
         setLoading(true);
-        fetchMyCartDataFromBackend()
+        fetchCustomerFeedbackDataFromBackend()
             .then(data => {
-                setTableData(data);
+                setFeedbackData(data);
                 setLoading(false);
             });
     }, []);
 
     return (
         <div>
-            {loading ? (
-                <p>Loading...</p>
-            ) : tableData?.length > 0 ? (
-                <TableComponent
-                    tableData={tableData}
-                    tableHeading="View Customer Feedback"
-                />
-            ) : (
-                <h1>No feedback available.</h1>
-            )}
+            {/*{loading ? (*/}
+            {/*    <p>Loading...</p>*/}
+            {/*) : tableData?.length > 0 ? (*/}
+            {/*    <TableComponent*/}
+            {/*        tableData={tableData}*/}
+            {/*        tableHeading="View Customer Feedback"*/}
+            {/*    />*/}
+            {/*) : (*/}
+            {/*    <h1>No feedback available.</h1>*/}
+            {/*)}*/}
+
+            { feedbackData?.length > 0 ?
+                (
+                    <TableComponent
+                        tableData={feedbackData}
+                        tableHeading="View Customer Feedback"
+                    />
+                ) :
+                (
+                    <h1>No feedback available.</h1>
+                )
+            }
+
         </div>
     );
 };

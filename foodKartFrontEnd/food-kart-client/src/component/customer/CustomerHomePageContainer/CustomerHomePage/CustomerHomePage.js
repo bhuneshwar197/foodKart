@@ -115,7 +115,7 @@ const CustomerHomePage = () => {
 
     const handleViewFeedback = () => {
         const loadComponent = customerEmail ? componentsName.viewCustomerFeedback : componentsName.customerNotLoginOrSignedUp;
-        setLoadingComponentName(loadComponent);
+        setLoadingComponentName(loadComponent); //loadingComponentName
         setOpenSubMenu(null);
     }
 

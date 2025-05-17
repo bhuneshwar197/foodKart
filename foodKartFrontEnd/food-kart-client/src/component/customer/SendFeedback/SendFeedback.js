@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import imageCompression from "browser-image-compression";
+import {CustomerContext} from "../CustomerLoginContextAndProvider/CustomerLoginContextAndProvider";
 
 const SendFeedback = () => {
+    const {customerEmail} =  useContext(CustomerContext);
+
     const [formData, setFormData] = useState({
         email: "",
-        timestamp: "",
+        // timestamp: "",
         subject: "",
         message: ""
 
@@ -53,19 +56,32 @@ const SendFeedback = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // formData = {
+        //     email: "",
+        //     subject: "",
+        //     message: ""
+        // };
+        setFormData({ ...formData, email: customerEmail});
+
+        const customerFeedbackData = {
+            email: customerEmail,
+            subject: formData.subject,
+            message: formData.message,
+        };
+
         try {
             const response = await fetch("http://localhost:9192/feedback/create-feedback", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(customerFeedbackData),
             });
 
             if (response.ok) {
                 alert("Feedback submitted successfully!");
                 setFormData({
-                    email: "", timestamp: "", subject: "", message: "",
+                    email: "", subject: "", message: "",
                     //image: "",
                     // qty: "", timestamp: "", type: "", cartLimit: "",
                     // rating1: 1, rating2: 2, rating3: 3, rating4: 4, rating5: 5
@@ -75,14 +91,14 @@ const SendFeedback = () => {
             // }
         } catch (error) {
             console.error("Error:", error);
-            alert("An error occurred while submitting the form.");
+            alert("An error occurred while submitting the feedack.");
         }
     };
 
     const handleReset = () => {
         setFormData({
             email: "",
-            timestamp: "",
+            // timestamp: "",
             subject: "",
             message: "",
         });
@@ -92,8 +108,8 @@ const SendFeedback = () => {
         <div style={{ maxWidth: "500px", margin: "auto", padding: "20px", border: "1px solid #ddd", borderRadius: "8px" }}>
             <h2 style={{ textAlign: "center" }}>Send Feedback form</h2>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required style={inputStyle} />
-                <input type="text" name="timestamp" value={formData.timestamp} onChange={handleChange} placeholder="Time Stamp" required style={inputStyle} />
+                {/*<input type="text" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required style={inputStyle} />*/}
+                {/*<input type="text" name="timestamp" value={formData.timestamp} onChange={handleChange} placeholder="Time Stamp" required style={inputStyle} />*/}
                 <input type="text" name="subject" value={formData.subject} onChange={handleChange} placeholder="Subject" required style={inputStyle} />
                 <input type="text" name="message" value={formData.message} onChange={handleChange} placeholder="Message" required style={inputStyle} />
 

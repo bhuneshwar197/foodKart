@@ -47,13 +47,21 @@ public class OrdersService {
 
             preparedOrderListByOrderId.forEach(preparedOrderByOrderId -> {
                 Food food = foodRepository.findByFoodId(preparedOrderByOrderId.getFoodId());
-                FoodDetail foodDetail = FoodDetail
-                        .builder()
-                        .foodId(preparedOrderByOrderId.getFoodId())
-                        .foodImage(food.getImage())
-                        .quantity(preparedOrderByOrderId.getQuantity())
-                        .soldPrice(preparedOrderByOrderId.getSoldPrice())
-                        .build();
+//                FoodDetail foodDetail = FoodDetail
+//                        .builder()
+//                        .foodId(preparedOrderByOrderId.getFoodId())
+//                        .foodImage(food.getImage())
+//                        .quantity(preparedOrderByOrderId.getQuantity())
+//                        .soldPrice(preparedOrderByOrderId.getSoldPrice())
+////                        .name(food.getFoodName())
+//                        .build();
+
+                FoodDetail foodDetail = new FoodDetail();
+                foodDetail.setFoodId(preparedOrderByOrderId.getFoodId());
+                foodDetail.setFoodImage(food.getImage());
+                foodDetail.setQuantity(preparedOrderByOrderId.getQuantity());
+                foodDetail.setSoldPrice(preparedOrderByOrderId.getSoldPrice());
+
                 foodDetails.add(foodDetail);
             });
 

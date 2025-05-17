@@ -24,16 +24,6 @@ public class FoodController {
 
     private final FoodService foodService;
 
-//    @PostMapping("/create-food")
-//    public ResponseEntity<Food> createFood(
-//            @ModelAttribute FoodRequest foodRequest,
-//            @RequestParam("image") MultipartFile file
-//    ) {
-//        Food savedFood = foodService.createFood(foodRequest, file);
-//        return new ResponseEntity<>(savedFood, HttpStatus.CREATED);
-//    }
-
-
     @PostMapping("/create-food")
     public ResponseEntity<Food> createFood(@RequestBody FoodRequest foodRequest) {
         Food savedFood = foodService.createFood(foodRequest);

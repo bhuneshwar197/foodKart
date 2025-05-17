@@ -1,11 +1,13 @@
 package com.foodkart.foodkart.service;
 
 import com.foodkart.foodkart.exception.DetailsNotFoundException;
+import com.foodkart.foodkart.model.CustomerFeedbackRequest;
 import com.foodkart.foodkart.model.Feedback;
 import com.foodkart.foodkart.repository.FeedbackRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -26,7 +28,13 @@ public class FeedbackService {
         return feedbackRepository.findAllByEmail(email);
     }
 
-    public Feedback createFeedback(Feedback feedback) {
+    public Feedback createFeedback(CustomerFeedbackRequest customerFeedbackRequest) {
+
+        Feedback feedback = new Feedback();
+        feedback.setEmail(customerFeedbackRequest.getEmail());
+        feedback.setMessage(customerFeedbackRequest.getMessage());
+        feedback.setSubject(customerFeedbackRequest.getSubject());
+        feedback.setTimestamp(LocalDate.now());
         return feedbackRepository.save(feedback);
     }
 

@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
@@ -14,9 +15,9 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FoodRequest {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;  // Auto-incremented field
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;  // Auto-incremented field
 
     private String foodId;
 
@@ -25,6 +26,8 @@ public class FoodRequest {
     private BigDecimal sellingPrice;
 
     private String description;
+
+    private String imageUrl;
 
 //    @Lob
 //    private String image;
@@ -40,14 +43,5 @@ public class FoodRequest {
 
     private Integer cartLimit;
 
-    private Integer rating1;
-
-    private Integer rating2;
-
-    private Integer rating3;
-
-    private Integer rating4;
-
-    private Integer rating5;
 }
 

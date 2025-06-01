@@ -48,16 +48,16 @@ public class CartService {
             }
             Food food = foodRepository.findByFoodId(cart.getFoodId());
             byte[] image = null;
-            if (food.getImage() != null) {
-                image = food.getImage();
-            }
+//            if (food.getImage() != null) {
+//                image = food.getImage();
+//            }
             SavedCartResponse savedCartResponse = SavedCartResponse
                     .builder()
                     .cartId(savedCard.getCartId())
                     .foodId(savedCard.getFoodId())
                     .quantity(savedCard.getQuantity())
                     .sellingPrice(food.getSellingPrice())
-                    .foodImage(image)
+                    .imageUrl(food.getImageUrl())
                     .foodName(food.getFoodName())
                     .foodDescription(food.getDescription())
                     .build();
@@ -77,21 +77,23 @@ public class CartService {
 
             Food food = foodRepository.findByFoodId(cartByEmail.getFoodId());
             byte[] image = null;
-            if(food.getImage() != null) {
-                image = food.getImage();
+//            if(food.getImage() != null) {
+//                image = food.getImage();
+//            }
+            if(food != null) {
+                SavedCartResponse savedCartResponse = SavedCartResponse
+                        .builder()
+                        .cartId(cartByEmail.getCartId())
+                        .foodId(cartByEmail.getFoodId())
+                        .quantity(cartByEmail.getQuantity())
+                        .sellingPrice(food.getSellingPrice())
+                        .imageUrl(food.getImageUrl())
+                        .foodName(food.getFoodName())
+                        .foodDescription(food.getDescription())
+                        .build();
+                savedCartResponses.add(savedCartResponse);
             }
 
-            SavedCartResponse savedCartResponse = SavedCartResponse
-                    .builder()
-                    .cartId(cartByEmail.getCartId())
-                    .foodId(cartByEmail.getFoodId())
-                    .quantity(cartByEmail.getQuantity())
-                    .sellingPrice(food.getSellingPrice())
-                    .foodImage(image)
-                    .foodName(food.getFoodName())
-                    .foodDescription(food.getDescription())
-                    .build();
-            savedCartResponses.add(savedCartResponse);
         });
         return savedCartResponses;
 

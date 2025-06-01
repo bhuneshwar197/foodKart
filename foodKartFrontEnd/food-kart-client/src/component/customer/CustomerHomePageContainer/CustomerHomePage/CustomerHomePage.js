@@ -21,11 +21,6 @@ import AboutUs from "../../AboutUs/AboutUs";
 import MyCart from "../../MyCart/MyCart";
 import ViewCustomerFeedback from "../../ViewCustomerFeedback/ViewCustomerFeedback";
 import SendFeedback from "../../SendFeedback/SendFeedback";
-// import ViewAdmin from "./ViewAdmin/ViewAdmin";
-// import ViewCustomer from "./ViewCustomer/ViewCustomer";
-// import ViewFeedback from "./ViewFeedback/ViewFeedback";
-// import AddFood from "./AddFood/AddFood";
-// import ViewCustomerFood from "./ViewCustomerFood/ViewCustomerFood";
 import ViewCustomerFood from "../../ViewCustomerFood/ViewCustomerFood";
 import CustomerLogin from "../../CustomerLogin/CustomerLogin";
 import {CustomerContext, CustomerProvider} from "../../CustomerLoginContextAndProvider/CustomerLoginContextAndProvider";
@@ -56,6 +51,7 @@ const componentsName = {
 const CustomerHomePage = () => {
 
     const {customerEmail, setCustomerEmail} =  useContext(CustomerContext);
+    const {customerName} =  useContext(CustomerContext);
 
 
     const [openSubMenu, setOpenSubMenu] = useState(null);
@@ -64,7 +60,16 @@ const CustomerHomePage = () => {
     const styles = {
         nav: { display: "flex", justifyContent: "space-around", background: "#333", padding: "10px", color: "white" },
         menuItem: { position: "relative", padding: "10px", cursor: "pointer" },
-        submenu: { position: "absolute", top: "40px", left: "0", background: "#444", padding: "10px", listStyle: "none", display: openSubMenu ? "block" : "none" },
+        submenu: {
+            position: "absolute",
+            top: "40px",
+            left: "0",
+            background: "#555",
+            padding: "10px",
+            listStyle: "none",
+            zIndex: 9999,
+            display: openSubMenu ? "block" : "none"
+        },
         submenuItem: {
             padding: "8px",
             cursor: "pointer",
@@ -72,6 +77,10 @@ const CustomerHomePage = () => {
             textDecoration: "none",
             width: "200px",
             display: "block"
+        },
+        customerName: {
+            padding: "10px",
+            color: "red",
         },
     };
 
@@ -137,6 +146,45 @@ const CustomerHomePage = () => {
         setOpenSubMenu(null);
     }
 
+
+    const renderComponent = () => {
+        if (loadingComponentName === componentsName.home) {
+            return <CustomerHomeMenu />;
+        } else if (loadingComponentName === componentsName.contactUs) {
+            return <ContactUs />
+        } else if (loadingComponentName === componentsName.aboutUs) {
+            return <AboutUs />
+        } else if (loadingComponentName === componentsName.customerSignup) {
+            return <CustomerSignup
+                setLoadingComponentName = {setLoadingComponentName}
+            />
+        } else if (loadingComponentName === componentsName.customerLogin) {
+            return <CustomerLogin
+                loadingComponentName = {loadingComponentName}
+                setLoadingComponentName = {setLoadingComponentName}
+            />
+        } else if (loadingComponentName === componentsName.myCart) {
+            return <MyCart />
+        }
+        else if (loadingComponentName === componentsName.viewCustomerFeedback) {
+            return <ViewCustomerFeedback/>
+        }
+        else if (loadingComponentName === componentsName.sendFeedback) {
+            return <SendFeedback/>
+        }
+        else if (loadingComponentName === componentsName.viewCustomerFood) {
+            return <ViewCustomerFood
+                setLoadingComponentName = {setLoadingComponentName}
+            />
+        } else if (loadingComponentName === componentsName.viewCustomerOrders) {
+            return <ViewCustomerOrders/>
+        } else if (loadingComponentName === componentsName.customerNotLoginOrSignedUp) {
+            return <CustomerNotLoginOrSignedUp />
+        } else if (loadingComponentName === componentsName.forgotCustomerPassword) {
+            return <ForgotCustomerPassword />
+        }
+    };
+
     return (
 
         <div>
@@ -153,7 +201,6 @@ const CustomerHomePage = () => {
                     onClick={handleHomeMenuClick}
                 >
                     <span>Home</span>
-
                 </div>
 
 
@@ -198,11 +245,11 @@ const CustomerHomePage = () => {
 
                 <div
                     style={styles.menuItem}
-                    onMouseEnter={() => setOpenSubMenu("YourAccount")}
+                    onMouseEnter={() => setOpenSubMenu("myAccount")}
                     onMouseLeave={() => setOpenSubMenu(null)}
                 >
-                    <span>Your Account ▼</span>
-                    {openSubMenu === "YourAccount" && (
+                    <span>My Account ▼</span>
+                    {openSubMenu === "myAccount" && (
                         <ul style={styles.submenu}>
 
                             {!customerEmail  && (
@@ -278,50 +325,13 @@ const CustomerHomePage = () => {
                     )}
                 </div>
 
-                {customerEmail && <div>Welcome {customerEmail}</div>}
-
+                {customerEmail &&
+                    <div style={styles.customerName}>Hello {customerName} !</div>
+                }
 
             </nav>
 
-            {(() => {
-                if (loadingComponentName === componentsName.home) {
-                    return <CustomerHomeMenu />;
-                } else if (loadingComponentName === componentsName.contactUs) {
-                    return <ContactUs />
-                } else if (loadingComponentName === componentsName.aboutUs) {
-                    return <AboutUs />
-                } else if (loadingComponentName === componentsName.customerSignup) {
-                    return <CustomerSignup
-                        setLoadingComponentName = {setLoadingComponentName}
-                    />
-                } else if (loadingComponentName === componentsName.customerLogin) {
-                    return <CustomerLogin
-                        loadingComponentName = {loadingComponentName}
-                        setLoadingComponentName = {setLoadingComponentName}
-                    />
-                } else if (loadingComponentName === componentsName.myCart) {
-                    return <MyCart />
-                }
-                else if (loadingComponentName === componentsName.viewCustomerFeedback) {
-                    return <ViewCustomerFeedback/>
-                }
-                else if (loadingComponentName === componentsName.sendFeedback) {
-                    return <SendFeedback/>
-                }
-                else if (loadingComponentName === componentsName.viewCustomerFood) {
-                    return <ViewCustomerFood
-                        setLoadingComponentName = {setLoadingComponentName}
-                    />
-                } else if (loadingComponentName === componentsName.viewCustomerOrders) {
-                    return <ViewCustomerOrders/>
-                } else if (loadingComponentName === componentsName.customerNotLoginOrSignedUp) {
-                    return <CustomerNotLoginOrSignedUp />
-                } else if (loadingComponentName === componentsName.forgotCustomerPassword) {
-                    return <ForgotCustomerPassword />
-                }
-
-
-            })()}
+            {renderComponent()}
 
         </div>
     );

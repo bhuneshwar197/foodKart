@@ -13,7 +13,8 @@ public class FoodDetail {
     private String foodId;
     private int quantity;
     private BigDecimal soldPrice;
-    private byte[] foodImage = null;
+    private String foodImageUrl;
+
 }
 
 

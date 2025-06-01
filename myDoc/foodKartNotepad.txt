@@ -7,6 +7,7 @@ gitHub: https://github.com/Sakshi-bit123/foodkart
 
 
 in mySql
+password: bhunesh@123
 CREATE DATABASE foodKart_database;
 use foodKart_database;
 SELECT DATABASE();
@@ -84,21 +85,15 @@ create table feedback
 
 
 CREATE TABLE food (
-	id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    food_id VARCHAR(50),
+    food_id VARCHAR(50) NOT NULL PRIMARY KEY,
     food_name VARCHAR(100),
     selling_price DECIMAL(10, 2),
     description VARCHAR(300),
-    image LONGBLOB,
+    imageUrl VARCHAR(500),
     qty INT,
     category VARCHAR(30),
     type VARCHAR(30),
-    cart_limit INT,
-    rating1 INT,
-    rating2 INT,
-    rating3 INT,
-    rating4 INT,
-    rating5 INT
+    cart_limit INT
 );
 
 category: veg/nonveg/all
@@ -250,3 +245,27 @@ RequestBody
     "address": "atka bagodar giridih",
     "pincode": "825322"
 }
+
+http://localhost:3000/images/carouselImages/1.jpg
+
+'https://placehold.co/800x400/33FF57/FFFFFF?text=Image+1',
+'https://placehold.co/800x400/33FF57/FFFFFF?text=Image+2',
+'https://placehold.co/800x400/3357FF/FFFFFF?text=Image+3',
+'https://placehold.co/800x400/FF33E9/FFFFFF?text=Image+4',
+'https://placehold.co/800x400/E9FF33/FFFFFF?text=Image+5',
+
+Cloud name: dgsjpttuu
+API key: 986444474489572
+API secret: aDRaLm_TiEqBtaaLYNNhrlLchkU
+CLOUDINARY_URL=cloudinary://986444474489572:aDRaLm_TiEqBtaaLYNNhrlLchkU@dgsjpttuu
+uploadPresetName: sakshi_image_upload
+
+
+Cloudinary
+
+Imgur
+
+Firebase Storage
+
+what are the steps to upload image in Cloudinary and use image url in code
+		

@@ -3,21 +3,17 @@ import imageCompression from "browser-image-compression";
 
 const AddFood = () => {
     const [formData, setFormData] = useState({
-        foodId: "",
         foodName: "",
         sellingPrice: "",
         description: "",
-        image: "", // Stores Base64 image
+        imageUrl: "", // Will store Cloudinary image URL
         qty: "",
         category: "",
         type: "",
         cartLimit: "",
-        rating1: 1,
-        rating2: 2,
-        rating3: 3,
-        rating4: 4,
-        rating5: 5,
     });
+
+    const [uploading, setUploading] = useState(false);
 
     const categories = ["Veg", "Non-Veg"];
     const types = ["Breakfast", "Lunch", "Dinner"];
@@ -28,39 +24,47 @@ const AddFood = () => {
 
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
+        if (!file) return;
 
-        if (file) {
-            if (file.size > 1024 * 1024 * 5) {  // ✅ Limit file size to 5MB
-                alert("File is too large! Please select an image < 5MB.");
-                return;
-            }
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1024,
+            useWebWorker: true,
+        };
 
-            // ✅ Compress Image before converting to Base64
-            const options = { maxSizeMB: 1, maxWidthOrHeight: 500, useWebWorker: true };
+        try {
+            setUploading(true);
             const compressedFile = await imageCompression(file, options);
 
-            const reader = new FileReader();
-            reader.readAsDataURL(compressedFile);
-            reader.onloadend = () => {
-                setFormData({ ...formData, image: reader.result.split(",")[1] }); // ✅ Remove Base64 prefix
-            };
+            const formDataImage = new FormData();
+            formDataImage.append("file", compressedFile);
+            formDataImage.append("upload_preset", "sakshi_image_upload"); // Replace this
+
+            const response = await fetch(
+                "https://api.cloudinary.com/v1_1/dgsjpttuu/image/upload", // Replace this
+                {
+                    method: "POST",
+                    body: formDataImage,
+                }
+            );
+
+            const data = await response.json();
+            setFormData((prev) => ({ ...prev, imageUrl: data.secure_url }));
+            setUploading(false);
+        } catch (error) {
+            console.error("Image upload failed", error);
+            alert("Image upload failed");
+            setUploading(false);
         }
     };
 
-    // Handle Image Upload
-    // const handleImageUpload = (e) => {
-    //     const file = e.target.files[0];
-    //     if (file) {
-    //         const reader = new FileReader();
-    //         reader.readAsDataURL(file);
-    //         reader.onloadend = () => {
-    //             setFormData({ ...formData, image: reader.result.split(",")[1] }); // Remove Base64 prefix
-    //         };
-    //     }
-    // };
-
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!formData.imageUrl) {
+            alert("Please upload an image first.");
+            return;
+        }
 
         try {
             const response = await fetch("http://localhost:9192/food/create-food", {
@@ -74,10 +78,14 @@ const AddFood = () => {
             if (response.ok) {
                 alert("Food item created successfully!");
                 setFormData({
-                    foodId: "", foodName: "", sellingPrice: "", description: "",
-                    //image: "",
-                    qty: "", category: "", type: "", cartLimit: "",
-                    rating1: 1, rating2: 2, rating3: 3, rating4: 4, rating5: 5
+                    foodName: "",
+                    sellingPrice: "",
+                    description: "",
+                    imageUrl: "",
+                    qty: "",
+                    category: "",
+                    type: "",
+                    cartLimit: "",
                 });
             } else {
                 alert("Failed to create food item.");
@@ -90,20 +98,14 @@ const AddFood = () => {
 
     const handleReset = () => {
         setFormData({
-            foodId: "",
             foodName: "",
             sellingPrice: "",
             description: "",
-            // image: "",
+            imageUrl: "",
             qty: "",
             category: "",
             type: "",
             cartLimit: "",
-            rating1: 1,
-            rating2: 2,
-            rating3: 3,
-            rating4: 4,
-            rating5: 5,
         });
     };
 
@@ -111,20 +113,12 @@ const AddFood = () => {
         <div style={{ maxWidth: "500px", margin: "auto", padding: "20px", border: "1px solid #ddd", borderRadius: "8px" }}>
             <h2 style={{ textAlign: "center" }}>Add Food Item</h2>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="foodId" value={formData.foodId} onChange={handleChange} placeholder="Food ID" required style={inputStyle} />
                 <input type="text" name="foodName" value={formData.foodName} onChange={handleChange} placeholder="Food Name" required style={inputStyle} />
                 <input type="number" name="sellingPrice" value={formData.sellingPrice} onChange={handleChange} placeholder="Selling Price" required style={inputStyle} />
                 <textarea name="description" value={formData.description} onChange={handleChange} placeholder="Description" required style={inputStyle}></textarea>
 
-                {/* Image Upload */}
-                {/*<input type="file" accept="image/*" onChange={handleImageUpload} required style={inputStyle} />*/}
-                {/*{formData.image && (*/}
-                {/*    <img src={`data:image/png;base64,${formData.image}`} alt="Preview" style={{ width: "100px", height: "100px", marginTop: "10px" }} />*/}
-                {/*)}*/}
-
                 <input type="number" name="qty" value={formData.qty} onChange={handleChange} placeholder="Quantity" required style={inputStyle} />
 
-                {/* Category Dropdown */}
                 <select name="category" value={formData.category} onChange={handleChange} required style={inputStyle}>
                     <option value="">Select Category</option>
                     {categories.map((cat) => (
@@ -132,7 +126,6 @@ const AddFood = () => {
                     ))}
                 </select>
 
-                {/* Type Dropdown */}
                 <select name="type" value={formData.type} onChange={handleChange} required style={inputStyle}>
                     <option value="">Select Type</option>
                     {types.map((t) => (
@@ -142,9 +135,21 @@ const AddFood = () => {
 
                 <input type="number" name="cartLimit" value={formData.cartLimit} onChange={handleChange} placeholder="Cart Limit" required style={inputStyle} />
 
-                {/* Buttons */}
+                {/* Image Upload */}
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    required
+                    style={inputStyle}
+                />
+                {uploading && <p style={{ color: "orange", textAlign: "center" }}>Uploading image...</p>}
+                {formData.imageUrl && (
+                    <img src={formData.imageUrl} alt="Preview" style={{ width: "100%", marginTop: "10px", borderRadius: "6px" }} />
+                )}
+
                 <div style={{ textAlign: "center", marginTop: "10px" }}>
-                    <button type="submit" style={buttonStyle}>Submit</button>
+                    <button type="submit" style={buttonStyle} disabled={uploading}>Submit</button>
                     <button type="button" onClick={handleReset} style={{ ...buttonStyle, backgroundColor: "#ccc", marginLeft: "10px" }}>Reset</button>
                 </div>
             </form>

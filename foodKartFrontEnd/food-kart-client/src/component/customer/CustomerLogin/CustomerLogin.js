@@ -11,6 +11,7 @@ const CustomerLogin = ({
                            setLoadingComponentName,
                        }) => {
     const {customerEmail, setCustomerEmail} =  useContext(CustomerContext);
+    const {customerName, setCustomerName} =  useContext(CustomerContext);
     // const { email, setEmail } = useContext(CustomerContext);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -36,6 +37,7 @@ const CustomerLogin = ({
 
             if (response.data) {
                 setCustomerEmail(response.data.email);
+                setCustomerName(response.data.name);
                 setLoadingComponentName("home");
                 return;
             } else {

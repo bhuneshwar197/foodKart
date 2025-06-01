@@ -30,6 +30,6 @@ public class SavedCartResponse {
 
     private BigDecimal sellingPrice;
 
-    private byte[] foodImage = null;
+    private String imageUrl;
 }
 

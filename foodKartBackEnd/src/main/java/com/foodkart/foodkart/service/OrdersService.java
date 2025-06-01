@@ -58,7 +58,7 @@ public class OrdersService {
 
                 FoodDetail foodDetail = new FoodDetail();
                 foodDetail.setFoodId(preparedOrderByOrderId.getFoodId());
-                foodDetail.setFoodImage(food.getImage());
+                foodDetail.setFoodImageUrl(food.getImageUrl());
                 foodDetail.setQuantity(preparedOrderByOrderId.getQuantity());
                 foodDetail.setSoldPrice(preparedOrderByOrderId.getSoldPrice());
 

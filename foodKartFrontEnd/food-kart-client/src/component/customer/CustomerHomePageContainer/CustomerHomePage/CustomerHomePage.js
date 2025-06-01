@@ -2,18 +2,6 @@
 import React, {useContext} from "react";
 import './CustomerHomePage.css'; // optional for custom styles
 
-
-// const CustomerHomePage = () => {
-//     return (
-//         <section>
-//             <h1> this is customer section</h1>
-//             <MenuBar />
-//         </section>
-//     );
-// };
-//
-// export default CustomerHomePage;
-
 import { useState } from "react";
 import CustomerHomeMenu from "../../CustomerHomeMenu/CustomerHomeMenu";
 import ContactUs from "../../ContactUs/ContactUs";
@@ -55,7 +43,7 @@ const CustomerHomePage = () => {
 
 
     const [openSubMenu, setOpenSubMenu] = useState(null);
-    const [loadingComponentName, setLoadingComponentName] = useState(null);
+    const [loadingComponentName, setLoadingComponentName] = useState('home');
 
     const styles = {
         nav: { display: "flex", justifyContent: "space-around", background: "#333", padding: "10px", color: "white" },

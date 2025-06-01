@@ -1,5 +1,30 @@
 import React from "react";
 
+const style = {
+    previewOrderButton: {
+       padding: '10px 15px',
+       border: 'none',
+       borderRadius: '5px',
+       backgroundColor: '#2563EB',
+       color: 'white',
+       cursor: 'pointer',
+   },
+   resetAddressButton: {
+      margin: '10px',
+      padding: '10px 15px',
+      border: 'none',
+      borderRadius: '5px',
+      backgroundColor: '#4F46E5',
+      color: 'white',
+      cursor: 'pointer',
+   },
+   addressFormContainer: {
+      align: 'center',
+      border: '0.5px solid black',
+      padding: '20px',
+   },
+};
+
 const DeliveryAddressForm = ({
                              totalOrderPrice,
                              addressForm,
@@ -9,7 +34,7 @@ const DeliveryAddressForm = ({
                              handleResetAddress,
                          }) => {
     return (
-        <div className="md:w-1/3 p-4 border rounded-md shadow h-fit sticky top-4 self-start space-y-4">
+        <div style={style.addressFormContainer}>
             <h2 className="text-2xl font-bold mb-2">Order Summary</h2>
             <table className="w-full text-left border-spacing-y-3 border-separate">
                 <tbody>
@@ -82,13 +107,13 @@ const DeliveryAddressForm = ({
             <div className="flex justify-center gap-4">
                 <button
                     onClick={handlePreviewOrder}
-                    className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md font-bold shadow"
+                    style={style.previewOrderButton}
                 >
                     Preview Order
                 </button>
                 <button
                     onClick={handleResetAddress}
-                    className="bg-white border border-gray-300 hover:bg-gray-100 text-gray-800 py-2 px-6 rounded-md font-medium"
+                    style={style.resetAddressButton}
                 >
                     Reset Address
                 </button>

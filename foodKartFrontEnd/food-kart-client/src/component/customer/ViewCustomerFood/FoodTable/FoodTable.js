@@ -5,10 +5,25 @@ import Grid from '@mui/material/Grid';
 
 
 const style = {
-   image: { width: "100%", height: "100%", objectFit: "cover", borderRadius: "8px", border: "1px solid black" },
+   image: {
+       width: "100%",
+       height: "100%",
+       objectFit: "cover",
+       borderRadius: "8px",
+       border: "1px solid black"
+   },
    foodDetail: {
-    border: "2px solid black"
-   }
+       border: "2px solid black",
+       borderRadius: '8px',
+   },
+   addToCartButton: {
+      padding: '10px 15px',
+      border: 'none',
+      borderRadius: '5px',
+      backgroundColor: '#007BFF',
+      color: 'white',
+      cursor: 'pointer',
+  },
 };
 
 
@@ -70,18 +85,14 @@ const FoodTable = ({ foods, setLoadingComponentName }) => {
                         <div className="col-span-9 bg-white p-4" style={style.foodDetail}>
                             <div className="flex flex-col justify-between flex-1">
                                 <div>
-                                    <a
-                                        href={`/food/${food.foodId}`}
-                                        className="text-2xl font-semibold text-blue-600 hover:underline"
-                                    >
-                                        {food.foodName}
-                                    </a>
-                                    <p className="text-green-600 font-bold mt-1">${food.sellingPrice}</p>
-                                    <p className="text-gray-700 mt-2 text-sm">{food.description}</p>
-                                    <div className="mt-3 text-sm text-gray-600 space-y-1">
-                                        <p><strong>Category:</strong> {food.category}</p>
-                                        <p><strong>Type:</strong> {food.type}</p>
+                                    <label><b> {food.foodName}</b> </label>
+                                    <div className="text-green-600 font-bold"><strong>Price:</strong> ${food.sellingPrice}</div>
+                                    <div className="text-gray-700 text-sm">{food.description}</div>
+                                    <div className="text-sm text-gray-600 space-y-1">
+                                        <div><strong>Category:</strong> {food.category}</div>
+                                        <div><strong>Type:</strong> {food.type}</div>
                                     </div>
+
                                 </div>
 
                                 {customerEmail && (
@@ -104,7 +115,7 @@ const FoodTable = ({ foods, setLoadingComponentName }) => {
                                 <div className="mt-4 flex items-center gap-3">
                                     <button
                                         onClick={() => handleAddToCart(food)}
-                                        className="ml-auto bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+                                        style={style.addToCartButton}
                                     >
                                         Add to Cart
                                     </button>

@@ -20,7 +20,7 @@ function App() {
 
 					<Route
 						exact
-						path="/foodkart"
+						path="/foodkart.com"
 						element={<CustomerHomePageContainer />}
 					/>
 

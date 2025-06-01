@@ -183,7 +183,7 @@ const MyCart = () => {
                 {cartItemData?.map((item) => (
                     <CartItem
                         key={item.cartId}
-                        item={item}
+                        food={item}
                         handleQuantityChange={handleQuantityChange}
                         handleRemoveItem={handleRemoveItem}
                     />
@@ -209,7 +209,7 @@ const MyCart = () => {
                     ? showCartItemDetails()
                     : (
                         <PreviewCartItem
-                            cartItemData={cartItemData}
+                            foodData={cartItemData}
                             totalOrderPrice={totalOrderPrice}
                             addressForm={addressForm}
                             handleEdit={handleEdit}
@@ -226,7 +226,7 @@ const MyCart = () => {
             {orderConfirmed && showOrderConfirmationMessage() }
 
             { cartItemData?.length === 0
-                ? showEmptyCartMessage()
+                ? !orderConfirmed && showEmptyCartMessage()
                 : showCartItem()
             }
         </div>

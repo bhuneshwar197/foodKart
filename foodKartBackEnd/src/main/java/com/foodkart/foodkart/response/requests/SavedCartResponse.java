@@ -18,7 +18,7 @@ public class SavedCartResponse {
 
     private Long cartId;  // Auto-incremented primary key
 
-    private String email;
+//    private String email;
 
     private String foodId;
 
@@ -31,5 +31,14 @@ public class SavedCartResponse {
     private BigDecimal sellingPrice;
 
     private String imageUrl;
+
+    private Integer cartLimit;
+
+    private String category;
+
+    private String type;
+
+    private String description;
+
 }
 

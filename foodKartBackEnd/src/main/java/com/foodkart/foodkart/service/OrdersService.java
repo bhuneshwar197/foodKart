@@ -45,22 +45,18 @@ public class OrdersService {
             List<FoodDetail> foodDetails = new ArrayList<>();
             List<PrepareOrder> preparedOrderListByOrderId = prepareOrderRepository.findByOrderId(orderByEmail.getOrderId());
 
-            preparedOrderListByOrderId.forEach(preparedOrderByOrderId -> {
-                Food food = foodRepository.findByFoodId(preparedOrderByOrderId.getFoodId());
-//                FoodDetail foodDetail = FoodDetail
-//                        .builder()
-//                        .foodId(preparedOrderByOrderId.getFoodId())
-//                        .foodImage(food.getImage())
-//                        .quantity(preparedOrderByOrderId.getQuantity())
-//                        .soldPrice(preparedOrderByOrderId.getSoldPrice())
-////                        .name(food.getFoodName())
-//                        .build();
+            preparedOrderListByOrderId.forEach(preparedFood -> {
+                Food food = foodRepository.findByFoodId(preparedFood.getFoodId());
 
                 FoodDetail foodDetail = new FoodDetail();
-                foodDetail.setFoodId(preparedOrderByOrderId.getFoodId());
-                foodDetail.setFoodImageUrl(food.getImageUrl());
-                foodDetail.setQuantity(preparedOrderByOrderId.getQuantity());
-                foodDetail.setSoldPrice(preparedOrderByOrderId.getSoldPrice());
+                foodDetail.setFoodId(preparedFood.getFoodId());
+                foodDetail.setFoodName(food.getFoodName());
+                foodDetail.setImageUrl(food.getImageUrl());
+                foodDetail.setQuantity(preparedFood.getQuantity());
+                foodDetail.setSoldPrice(preparedFood.getSoldPrice());
+                foodDetail.setCategory(food.getCategory());
+                foodDetail.setType(food.getType());
+                foodDetail.setDescription(food.getDescription());
 
                 foodDetails.add(foodDetail);
             });

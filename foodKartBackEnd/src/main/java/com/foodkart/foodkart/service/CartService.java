@@ -90,6 +90,10 @@ public class CartService {
                         .imageUrl(food.getImageUrl())
                         .foodName(food.getFoodName())
                         .foodDescription(food.getDescription())
+                        .cartLimit(food.getCartLimit())
+                        .category(food.getCategory())
+                        .type(food.getType())
+                        .description(food.getDescription())
                         .build();
                 savedCartResponses.add(savedCartResponse);
             }

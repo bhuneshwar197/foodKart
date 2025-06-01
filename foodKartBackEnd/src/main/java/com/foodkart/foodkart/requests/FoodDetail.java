@@ -11,9 +11,13 @@ import java.math.BigDecimal;
 @Builder
 public class FoodDetail {
     private String foodId;
+    private String foodName;
     private int quantity;
     private BigDecimal soldPrice;
-    private String foodImageUrl;
+    private String imageUrl;
+    private String category;
+    private String type;
+    private String description;
 
 }
 

@@ -6,7 +6,8 @@ import FoodTable from "./FoodTable/FoodTable";
 const ViewCustomerFood = ({
                               setLoadingComponentName,
                           }) => {
-    const [tableData, setTableData] = useState([]);
+    const [customerFood, setCustomerFood] = useState([]);
+    const [customerFoodError, setCustomerFoodError] = useState(true);
 
     const fetchFoodData = async () => {
         try {
@@ -14,25 +15,30 @@ const ViewCustomerFood = ({
             const data = await response.json();
             return data;
         } catch (error) {
+            setCustomerFood([]);
+            setCustomerFoodError(true);
             console.error(`Error fetching Cart data `, error);
         }
     };
 
     useEffect(() => {
-        setTableData([]);
-        fetchFoodData().then(setTableData);
+        setCustomerFood([]);
+        fetchFoodData().then(setCustomerFood);
     }, []);
 
     return (
+    <>
+        {customerFoodError && ( <h1>No Food available.</h1> ) }
         <div>
-            {tableData.length > 0 && (
+            {customerFood?.length > 0 && (
                 <FoodTable
-                    foods={tableData}
+                    foods={customerFood}
                     setLoadingComponentName={setLoadingComponentName}
                 />
             )}
 
         </div>
+    </>
     );
 };
 
